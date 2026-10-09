@@ -1,0 +1,77 @@
+<form [formGroup]="notificationForm" (ngSubmit)="onSaveChanges()" class="page-body">
+
+  <mat-card appearance="outlined" class="main-card">
+    <mat-card-content class="main-content">
+
+      <!-- Notifications Channel Section -->
+      <section class="config-section">
+        <h2 class="section-title">{{ 'settingsPage.alertsNotifications.channelTitle' | translate }}</h2>
+        <div class="divider"></div>
+
+        <div class="channel-grid">
+
+          <div class="channel-card">
+            <div class="channel-info">
+              <h3 class="channel-name">{{ 'settingsPage.alertsNotifications.emailNotifications' | translate }}</h3>
+              <p class="channel-desc">{{ 'settingsPage.alertsNotifications.emailDesc' | translate }}</p>
+            </div>
+            <mat-slide-toggle formControlName="emailNotifications" color="primary"></mat-slide-toggle>
+          </div>
+
+          <div class="channel-card">
+            <div class="channel-info">
+              <h3 class="channel-name">{{ 'settingsPage.alertsNotifications.inAppNotifications' | translate }}</h3>
+              <p class="channel-desc">{{ 'settingsPage.alertsNotifications.inAppDesc' | translate }}</p>
+            </div>
+            <mat-slide-toggle formControlName="inAppNotifications" color="primary"></mat-slide-toggle>
+          </div>
+
+        </div>
+      </section>
+
+
+
+      <!-- Lab Activity Summary Section -->
+      <section class="config-section">
+        <h2 class="section-title">{{ 'settingsPage.alertsNotifications.activitySummary' | translate }}</h2>
+        <div class="divider"></div>
+
+        <div class="summary-list">
+
+          <div class="summary-item">
+            <mat-checkbox formControlName="dailySummary" color="primary" class="summary-checkbox"></mat-checkbox>
+            <div class="summary-info">
+              <h3 class="summary-name">{{ 'settingsPage.alertsNotifications.dailySummary' | translate }}</h3>
+              <p class="summary-desc">{{ 'settingsPage.alertsNotifications.dailyDesc' | translate }}</p>
+            </div>
+          </div>
+
+          <div class="summary-item">
+            <mat-checkbox formControlName="weeklyReport" color="primary" class="summary-checkbox"></mat-checkbox>
+            <div class="summary-info">
+              <h3 class="summary-name">{{ 'settingsPage.alertsNotifications.weeklyReport' | translate }}</h3>
+              <p class="summary-desc">{{ 'settingsPage.alertsNotifications.weeklyDesc' | translate }}</p>
+            </div>
+          </div>
+
+          <div class="summary-item">
+            <mat-checkbox formControlName="instantSensorAlerts" color="primary" class="summary-checkbox"></mat-checkbox>
+            <div class="summary-info">
+              <h3 class="summary-name">{{ 'settingsPage.alertsNotifications.instantAlerts' | translate }}</h3>
+              <p class="summary-desc">{{ 'settingsPage.alertsNotifications.instantDesc' | translate }}</p>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <div class="divider full-width"></div>
+
+      <div class="actions-footer">
+        <button type="submit" mat-flat-button color="primary" class="save-btn">{{ 'settingsPage.profileIdentity.saveChanges' | translate }}</button>
+      </div>
+
+    </mat-card-content>
+  </mat-card>
+
+</form>

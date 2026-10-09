@@ -1,0 +1,1034 @@
+{
+  "sidebar": {
+    "logo": {
+      "name": "SafeLab",
+      "subtext": "Reliable Labs"
+    },
+    "menu": {
+      "main": "Main Menu",
+      "dashboard": "Dashboard",
+      "laboratories": "Laboratories",
+      "alerts": "Alerts",
+      "reports": "Reports",
+      "system": "System",
+      "settings": "Settings"
+    },
+    "status": {
+      "systemActive": "System Active"
+    },
+    "user": {
+      "logout": "Logout",
+      "role": "Lab Coordinator"
+    }
+  },
+  "topbar": {
+    "search": "Search labs or alerts..."
+  },
+  "dashboard": {
+    "title": "Dashboard",
+    "subtitle": "System overview and active alerts",
+    "alert": {
+      "banner": "critical alert requires immediate attention",
+      "bannerPlural": "critical alerts require immediate attention",
+      "bannerSubtext": "Tap \"View Alerts\" to investigate and resolve",
+      "viewAlerts": "View Alerts"
+    },
+    "stats": {
+      "activeCriticalAlerts": "Active Critical Alerts",
+      "sensorsOnline": "Sensors Online",
+      "equipmentInRange": "Equipment in Range",
+      "lastComplianceReport": "Last Compliance Report"
+    },
+    "panel": {
+      "activeAlerts": "Active Alerts",
+      "activeAlertsSubtitle": "Sorted by severity — most critical first",
+      "viewAll": "View all",
+      "equipmentStatus": "Equipment Status",
+      "equipmentStatusSubtitle": "Current temperature readings",
+      "allEquipment": "All equipment",
+      "recentAlerts": "Recent Alerts"
+    },
+    "severity": {
+      "critical": "Critical",
+      "warning": "Warning",
+      "resolved": "Resolved"
+    },
+    "status": {
+      "inRange": "In Range",
+      "outOfRange": "Out of Range",
+      "monitor": "Monitor",
+      "noEquipmentRegistered": "No equipment registered",
+      "noLaboratoriesRegistered": "No laboratories registered",
+      "allSystemsOperational": "All systems operational"
+    },
+    "environmentalMetrics": "Environmental Metrics",
+    "selectMetric": "Select Metric",
+    "laboratories": "Laboratories",
+    "fab": "Generate Shift Report",
+    "chart": {
+      "trends": "Trends",
+      "average_across_all_active": "Average across all active zones",
+      "filter_laboratories": "Filter Laboratories",
+      "no_trends_available": "No {{metric}} trends available",
+      "metric": "metric"
+    }
+  },
+  "alerts": {
+    "title": "Alerts",
+    "subtitle": "Active incidents and notifications",
+    "searchPlaceholder": "Search alerts...",
+    "filters": {
+      "severity": "Severity",
+      "laboratory": "Laboratory",
+      "status": "Status"
+    },
+    "summary": {
+      "critical": "Critical",
+      "warning": "Warnings",
+      "informational": "Informational",
+      "resolvedToday": "Resolved Today",
+      "CRITICAL": "Critical Alerts",
+      "WARNING": "Warning Alerts",
+      "RESOLVED TODAY": "Resolved Today",
+      "alerts": "alerts"
+    },
+    "total": "{{count}} alerts total",
+    "button": {
+      "investigate": "Investigate"
+    }
+  },
+  "laboratories": {
+    "title": "Laboratories",
+    "subtitle": "Your laboratory facilities",
+    "loading": "Loading laboratories...",
+    "empty": {
+      "title": "No laboratories found",
+      "description": "Try adjusting your search or filter criteria."
+    },
+    "pagination": {
+      "showing": "Showing",
+      "to": "to",
+      "of": "of",
+      "labs": "labs",
+      "prev": "Prev",
+      "next": "Next"
+    },
+    "add": "Add Laboratory",
+    "saveChanges": "Save Changes",
+    "saveLaboratory": "Save Laboratory",
+    "success": {
+      "title": "Laboratory Created Successfully!",
+      "description": "has been registered and is ready for monitoring.",
+      "viewAll": "View All Laboratories",
+      "createAnother": "Create Another"
+    },
+    "filters": {
+      "status": "Status",
+      "location": "Location"
+    },
+    "status": {
+      "all": "All",
+      "ok": "OK",
+      "warning": "Warning",
+      "critical": "Critical"
+    },
+    "location": {
+      "building-a": "Building A",
+      "building-b": "Building B",
+      "building-c": "Building C",
+      "building-d": "Building D"
+    },
+    "toolbar": {
+      "grid_view": "Grid view",
+      "list_view": "List view",
+      "gridView": "Grid view",
+      "listView": "List view"
+    },
+    "detailCard": {
+      "12_min": "~12 min"
+    },
+    "detail": {
+      "notifications": {
+        "notification_channels_rules": "Notification Channels & Rules",
+        "configure_alert_dispatch_channels": "Configure alert dispatch channels and threshold escalation levels specifically for",
+        "active_channels": "Active Channels",
+        "select_which_communication_channels": "Select which communication channels are active for telemetry warnings and critical events.",
+        "email_dispatch": "Email dispatch",
+        "send_full_reports_and": "Send full reports and incident details to assigned supervisors",
+        "sms_alert": "SMS alert",
+        "critical_mobile_alerts_for": "Critical mobile alerts for immediate evacuation notices",
+        "push_notification": "Push notification",
+        "realtime_alerts_directly_to": "Real-time alerts directly to the laboratory control station screen",
+        "alert_filtering": "Alert Filtering",
+        "define_restrictions_for_alerts": "Define restrictions for alerts generated in this laboratory to prevent message fatigue.",
+        "mute_warnings_amber_state": "Mute warnings (amber state) and only send notifications for critical thresholds (red state).",
+        "when_critical_alerts_only": "When \"Critical Alerts Only\" is activated, standard calibration drift or slight temperature changes will not trigger notifications, but will still show in the dashboard logs.",
+        "save_preferences": "Save Preferences"
+      },
+      "reports": {
+        "safety_audits_reports": "Safety Audits & Reports",
+        "access_generated_compliance_sheets": "Access generated compliance sheets, device logs, and system calibration reports for",
+        "updated": "Updated:",
+        "need_custom_time_range": "Need custom time range analysis?",
+        "you_can_compile_specialized": "You can compile specialized sensors charts and alarm reports in the main reports center."
+      },
+      "alerts": {
+        "recent_alerts": "Recent Alerts",
+        "no_recent_alerts": "No recent alerts"
+      }
+    }
+  },
+  "history": {
+    "title": "History & Reports",
+    "subtitle": "Event timeline and shift reports",
+    "shift": {
+      "current": "Current shift",
+      "active": "active"
+    },
+    "button": {
+      "generateReport": "Generate Shift Report"
+    },
+    "tabs": {
+      "allEvents": "All events",
+      "incidents": "Incidents",
+      "resolutions": "Resolutions",
+      "manualObservations": "Manual observations",
+      "automations": "Automations"
+    },
+    "filter": {
+      "today": "Today",
+      "searchPlaceholder": "Search events..."
+    },
+    "panel": {
+      "timeline": "Shift Timeline",
+      "report": "Generate Shift Report"
+    },
+    "stats": {
+      "incidents": "incidents",
+      "resolved": "resolved",
+      "active": "active",
+      "manualObs": "manual obs"
+    },
+    "notes": {
+      "general": "General shift notes",
+      "generalHint": "Summary of general operations and non-critical observations.",
+      "handover": "Handover note — for the next shift",
+      "handoverSubtitle": "Critical information for the incoming operator.",
+      "handoverNotice": "This note will be visible to Jean Arizabal (next shift, 2:00 PM - 10:00 PM) upon login.",
+      "placeholder": "Enter notes here...",
+      "handoverPlaceholder": "Important details for next shift..."
+    },
+    "drawer": {
+      "title": "Event details",
+      "name": "Name",
+      "date": "Date",
+      "lab": "Lab",
+      "type": "Type",
+      "description": "Description",
+      "generateReport": "Generate report",
+      "viewLab": "View laboratory"
+    },
+    "pdf": {
+      "title": "SafeLab Compliance Shift Report",
+      "activeShift": "Active Shift",
+      "reportDate": "Report Date",
+      "systemStatus": "System Status",
+      "operational": "Operational",
+      "totalEvents": "Total Events",
+      "incidents": "Incidents",
+      "resolved": "Resolved",
+      "active": "Active",
+      "manualObservations": "Manual Observations",
+      "automations": "Automations",
+      "generalNotes": "General Shift Notes",
+      "handoverNote": "Handover Note (for next shift)",
+      "noNotes": "No notes recorded for this shift.",
+      "noHandover": "No handover note recorded.",
+      "timelineEvents": "Shift Timeline Events",
+      "time": "Time",
+      "laboratory": "Laboratory",
+      "severity": "Severity",
+      "eventName": "Event Name",
+      "description": "Description",
+      "status": "Status",
+      "noEvents": "No events recorded during this shift.",
+      "operatorSignature": "Operator Signature ({{name}})",
+      "coordinatorSignature": "Safety Coordinator Signature"
+    },
+    "reportDialog": {
+      "previewPdf": "Preview PDF",
+      "downloadPdf": "Download PDF"
+    },
+    "timeline": {
+      "noEventsMatch": "No history records match the current filters.",
+      "viewIncident": "View incident",
+      "viewDetails": "View details"
+    }
+  },
+  "settings": {
+    "title": "Settings",
+    "subtitle": "Manage your system configuration",
+    "general": {
+      "title": "General Settings",
+      "badge": "System-wide",
+      "description": "Manage your global laboratory environment settings, including regional formatting, time zones, and default units of measurement for all experiments.",
+      "button": "View Details"
+    },
+    "userProfile": {
+      "title": "User Profile",
+      "description": "Manage your personal identity, contact information, and professional credentials.",
+      "editProfile": "Edit Profile"
+    },
+    "sensor": {
+      "title": "Sensor Configuration",
+      "description": "Calibrate and manage lab sensors for temperature, humidity, and atmospheric pressure monitoring.",
+      "button": "Configure",
+      "add": "Add New Sensor"
+    },
+    "metricTypes": {
+      "title": "Metric Types",
+      "add": "Add Metric Type"
+    },
+    "alerts": {
+      "title": "Alerts & Notifications",
+      "description": "Define critical thresholds for automated alerts via SMS, email, or in-app notifications for specimen safety.",
+      "button": "Set Preferences"
+    },
+    "security": {
+      "title": "Security & Access",
+      "description": "Control user permissions, API keys, and audit logs to ensure compliance with laboratory safety protocols.",
+      "button": "Manage"
+    }
+  },
+  "common": {
+    "actions": "Actions",
+    "add": "Add",
+    "edit": "Edit",
+    "delete": "Delete",
+    "save": "Save",
+    "cancel": "Cancel",
+    "close": "Close",
+    "back": "Back",
+    "loading": "Loading...",
+    "saving": "Saving...",
+    "error": "Error",
+    "success": "Success",
+    "status": {
+      "active": "Active",
+      "inactive": "Inactive",
+      "pending": "Pending",
+      "resolved": "Resolved"
+    },
+    "closeDialog": "Close dialog",
+    "preferredLanguage": "Preferred Language"
+  },
+  "automation": {
+    "activeUsers": {
+      "title": "Active Users",
+      "usersCount": "{{count}} users",
+      "columns": {
+        "user": "User",
+        "role": "Role",
+        "labsAccess": "Labs Access",
+        "lastLogin": "Last Login",
+        "status": "Status"
+      },
+      "changePermissions": "Change user permissions"
+    }
+  },
+  "routes": {
+    "dashboard": {
+      "title": "Dashboard",
+      "subtitle": "Overview of all laboratory environments"
+    },
+    "laboratories": {
+      "title": "Laboratories",
+      "subtitle": "Manage and monitor laboratory environments",
+      "add": {
+        "title": "Add Laboratory",
+        "subtitle": "Register a new laboratory in the system"
+      },
+      "edit": {
+        "title": "Edit Laboratory",
+        "subtitle": "Modify laboratory configuration and details"
+      },
+      "detail": {
+        "title": "Laboratory Details",
+        "subtitle": "Detailed information and metrics"
+      }
+    },
+    "alerts": {
+      "title": "Alerts",
+      "subtitle": "View and manage system alerts",
+      "incident": {
+        "title": "Alerts",
+        "subtitle": "Active incidents and notifications"
+      },
+      "resolve": {
+        "title": "Resolve Incident",
+        "subtitle": "Log resolution details for the active incident"
+      }
+    },
+    "history": {
+      "title": "History & Reports",
+      "subtitle": "Event timeline and shift reports"
+    },
+    "reports": {
+      "title": "Reports",
+      "subtitle": "Generate and view system reports"
+    },
+    "settings": {
+      "sensor": {
+        "title": "Sensor Configuration",
+        "subtitle": "Calibrate and manage lab sensors for temperature, humidity, and atmospheric pressure monitoring."
+      },
+      "metricTypes": {
+        "title": "Metric Types",
+        "subtitle": "Define and manage standard sensor metric types, units, icons, and categories."
+      },
+      "profile": {
+        "title": "Profile & Identity",
+        "subtitle": "Manage your personal information and professional credentials."
+      },
+      "alerts": {
+        "title": "Alerts & Notifications",
+        "subtitle": "Configure how and when you receive laboratory safety and status updates."
+      },
+      "security": {
+        "title": "Security & Access",
+        "subtitle": "Manage your account credentials and security preferences."
+      },
+      "users": {
+        "title": "Users & Permissions",
+        "subtitle": "Control who has access to SafeLab and what they can do."
+      },
+      "threshold": {
+        "title": "Threshold Configuration",
+        "subtitle": "Define temperature and environmental limits for each equipment."
+      },
+      "rules": {
+        "title": "Automation Rules",
+        "subtitle": "Define how the system responds automatically to environmental events."
+      }
+    }
+  },
+  "iam": {
+    "login": {
+      "welcome": "Welcome back",
+      "subtitle": "Sign in to monitor your laboratories",
+      "emailLabel": "Email address",
+      "emailPlaceholder": "you@organization.com",
+      "passwordLabel": "Password",
+      "forgotPassword": "Forgot password?",
+      "rememberMe": "Remember me for 30 days",
+      "signIn": "Sign in",
+      "signingIn": "Signing in...",
+      "haveInvitation": "Have an invitation?",
+      "registerHere": "Register here",
+      "termsPrefix": "By signing in, you agree to our",
+      "terms": "Terms of Service",
+      "and": "and",
+      "privacy": "Privacy Policy",
+      "clearTestUsers": "Double click to clear test users"
+    },
+    "register": {
+      "title": "Create Account",
+      "subtitle": "Sign up to access your shared laboratories",
+      "fullNameLabel": "Full Name",
+      "fullNamePlaceholder": "John Doe",
+      "emailLabel": "Email address",
+      "emailPlaceholder": "you@organization.com",
+      "passwordLabel": "Password",
+      "confirmPasswordLabel": "Confirm Password",
+      "passwordMismatch": "Passwords do not match.",
+      "signUpButton": "Create Account",
+      "signingUp": "Creating account...",
+      "alreadyHaveAccount": "Already have an account?",
+      "signInHere": "Sign in here"
+    },
+    "confirmAccount": {
+      "title": "Verify Your Account",
+      "subtitle": "We sent a 6-digit confirmation code to",
+      "emailLabel": "Email address",
+      "codeLabel": "Verification Code",
+      "codePlaceholder": "Enter 6-digit code",
+      "submitButton": "Verify Account",
+      "submitting": "Verifying...",
+      "resendCode": "Resend verification code",
+      "resendSuccess": "A new code has been sent to your email.",
+      "backToLogin": "Back to Sign In"
+    },
+    "byEspecialistas": "BY ESPECIALISTAS",
+    "": "••••••••••"
+  },
+  "incident": {
+    "details": {
+      "backLink": "Back to Dashboard",
+      "breadcrumbRoot": "Dashboard",
+      "breadcrumbAlerts": "Alerts",
+      "breadcrumbIncident": "Incident",
+      "liveStatus": "Live Telemetry",
+      "systemStatusLabel": "Current system status:",
+      "activeIncident": "Active Incident",
+      "incidentId": "INCIDENT",
+      "started": "Started",
+      "affectedEquipment": "Affected equipment",
+      "currentReadings": "Current Readings",
+      "currentValueLabel": "CURRENT VALUE",
+      "thresholdLabel": "Threshold:",
+      "exceededByLabel": "Exceeded by:",
+      "durationLabel": "Duration:",
+      "chartHeader": "Realtime Chart — Last 2 Hours",
+      "normalRange": "Normal range",
+      "thresholdExceeded": "Threshold exceeded",
+      "limitLabel": "Limit:",
+      "sensorInfo": "Sensor Information",
+      "sensorId": "Sensor ID",
+      "location": "Location",
+      "lastCalibration": "Last Calibration",
+      "signalStrength": "Signal Strength",
+      "networkStatus": "Network Status",
+      "sensorType": "Sensor Type",
+      "automationResponse": "Automation Response",
+      "activatedForZone": "Activated automatically for zone",
+      "descriptionLabel": "Description:",
+      "noAutomationTriggered": "No Automation Rule Triggered",
+      "inactive": "Inactive",
+      "noRuleMatch": "No safety automation rule matches this laboratory metric breach.",
+      "configureRulesHint": "Configure rules in system settings to automate emergency responses.",
+      "actions": "Actions",
+      "actionsSubtitle": "Take action on this incident",
+      "markAsResolved": "Mark as Resolved",
+      "escalateSupervisor": "Escalate to Supervisor",
+      "viewLab": "View Laboratory",
+      "resolveHelpText": "Resolving requires a note describing the corrective action taken.",
+      "incidentTimeline": "Incident Timeline",
+      "limitBreachDetected": "Limit breach detected",
+      "readingFirstBreach": "Reading: {{value}} — first breach registered",
+      "alertDispatched": "Alert dispatched",
+      "notificationDuty": "Notification sent to lab coordinator on duty",
+      "automationTriggered": "Automation triggered",
+      "activeFor": "active for",
+      "resolvedState": "Incident resolved",
+      "awaitingState": "Awaiting resolution",
+      "noteSaved": "Corrective action note saved.",
+      "remainsActive": "Incident remains active.",
+      "loading": "Loading incident details..."
+    },
+    "resolve": {
+      "breadcrumbIncidents": "Incidents",
+      "breadcrumbResolve": "Resolve",
+      "resolveIncident": "Resolve Incident",
+      "activeForLabel": "Active for",
+      "resolutionNote": "Resolution Note",
+      "required": "Required",
+      "actionDesc": "Describe the corrective action taken to resolve this incident.",
+      "placeholder": "e.g. Adjusted thermostat to 6°C, verified all 12 biological samples are intact, will monitor temperature for the next 30 minutes.",
+      "typeTitle": "Resolution Type",
+      "typeDesc": "Select the type of action that resolved this incident.",
+      "manualFix": "Manual fix",
+      "resolvedStaff": "Resolved by staff",
+      "automated": "Automated",
+      "systemResolved": "System resolved",
+      "escalated": "Escalated",
+      "closedSupervisor": "Closed by supervisor",
+      "followUpTitle": "Schedule follow-up maintenance",
+      "followUpSub": "A maintenance task will be created for {{name}}",
+      "incidentSummary": "Incident Summary",
+      "sensor": "SENSOR",
+      "currentValue": "CURRENT VALUE",
+      "threshold": "threshold",
+      "triggeredAt": "TRIGGERED AT",
+      "today": "today",
+      "location": "LOCATION",
+      "exceededMessage": "Exceeded threshold by {{exceededBy}} for {{duration}}",
+      "photoAttachment": "Photo Attachment",
+      "optional": "optional",
+      "uploadText": "Tap to attach or drag & drop",
+      "uploadSubText": "JPG or PNG · Max 5MB",
+      "recommendedAudit": "Recommended for audit records",
+      "remove": "Remove",
+      "permanentLogNotice": "This resolution will be permanently logged in the audit history and included in the shift report.",
+      "confirmBtn": "Confirm Resolution",
+      "maxchars": "= MAX_CHARS\">\r\n             /",
+      "attachedPhotoAlt": "Attached photo",
+      "chars": "characters"
+    },
+    "escalate": {
+      "escalation_reason": "Escalation reason",
+      "select_reason": "Select reason...",
+      "message_to_supervisor": "Message to supervisor",
+      "add_context_for_the": "Add context for the supervisor...",
+      "notify_via": "Notify via",
+      "supervisor_on_duty": "Supervisor on duty:",
+      "dr_jean_arizabal_last": "Dr. Jean Arizabal · Last active 3 min ago",
+      "send_escalation": "Send Escalation",
+      "reasons": {
+        "temperature_exceeded": "Temperature threshold exceeded",
+        "equipment_malfunction": "Equipment malfunction",
+        "contamination_risk": "Contamination risk",
+        "power_failure": "Power failure",
+        "sensor_error": "Sensor error",
+        "other": "Other"
+      }
+    }
+  },
+  "settingsPage": {
+    "title": "Settings",
+    "sensor": {
+      "filterBy": "Filter by:",
+      "allTypes": "All Sensor Types",
+      "allLocations": "All Lab Locations",
+      "totalSensors": "Total {{count}} Sensors",
+      "compliance": "Calibration Compliance",
+      "nextAudit": "Next Audit: {{date}}",
+      "calibrated": "Calibrated",
+      "pending": "Pending",
+      "overdue": "Overdue",
+      "safetyFirst": "Safety First",
+      "complianceText": "Regular sensor calibration ensures ISO 17025 compliance and lab safety standards.",
+      "downloadAudit": "Download Audit Report",
+      "sensorDetailsTemplate": "Type: {{type}} | Unit: {{unit}} | Last Cal: {{lastCal}}",
+      "target": "Target:",
+      "safety_limits": "Safety Limits:",
+      "calibrate": "Calibrate"
+    },
+    "sensorDialog": {
+      "editTitle": "Edit Sensor Configuration",
+      "addTitle": "Add New Sensor",
+      "nameLabel": "Sensor Name",
+      "namePlaceholder": "e.g. Temperature Sensor - Hood 3",
+      "nameRequired": "Sensor name is required",
+      "typeLabel": "Sensor Type / Model",
+      "typePlaceholder": "e.g. Model PT100",
+      "typeRequired": "Sensor type is required",
+      "serialLabel": "Serial Number / MAC Address",
+      "serialPlaceholder": "e.g. MAC-A1-B2-C3 or SN-88291-B",
+      "serialRequired": "Serial number / MAC address is required",
+      "associatedLab": "Associated Laboratory",
+      "selectLab": "Select Laboratory",
+      "labRequired": "Laboratory association is required",
+      "targetLabel": "Monitoring Target",
+      "roomAmbient": "Room Ambient",
+      "specificEquipment": "Specific Equipment",
+      "selectEquipment": "Select Equipment",
+      "minThreshold": "Min Threshold",
+      "maxThreshold": "Max Threshold",
+      "warningThreshold": "Warning Threshold",
+      "noLimit": "No limit",
+      "noWarningLimit": "No warning limit",
+      "sensorActive": "Sensor is Active",
+      "hardwareNote": "Device registered successfully. The sensor will remain 'Inactive' until the physical hardware turns on and makes its first connection.",
+      "saveSensor": "Save Sensor",
+      "loadingEquipment": "Loading equipment...",
+      "labLabel": "Associated Laboratory",
+      "locationType": "Monitoring Target",
+      "ambient": "Room Ambient",
+      "equipment": "Specific Equipment",
+      "equipmentLabel": "Specific Equipment",
+      "equipmentRequired": "Equipment association is required",
+      "minLabel": "Min Threshold",
+      "maxLabel": "Max Threshold",
+      "warningLabel": "Warning Threshold"
+    },
+    "calibrateDialog": {
+      "title": "Calibrate Sensor",
+      "certificateLabel": "Certificate ID / Calibration Number",
+      "certificatePlaceholder": "e.g. CERT-2026-X992",
+      "certificateRequired": "Certificate ID is required",
+      "dateLabel": "Calibration Date",
+      "dateRequired": "Calibration date is required",
+      "expirationLabel": "Expiration Date",
+      "expirationRequired": "Expiration date is required",
+      "submit": "Submit Calibration"
+    },
+    "metricTypes": {
+      "filterBy": "Filter by:",
+      "allCategories": "All Categories",
+      "allStatuses": "All Statuses",
+      "activeOnly": "Active Only",
+      "inactiveOnly": "Inactive Only",
+      "totalTypes": "Total {{count}} Metric Types",
+      "catalogDistribution": "Catalog Distribution",
+      "activeTypes": "Active Types",
+      "inactiveTypes": "Inactive Types",
+      "totalCatalogued": "Total catalogued",
+      "databaseCatalog": "Database Catalog",
+      "catalogText": "Defining metric types dynamically allows automatic telemetry processing, unit formatting, icon rendering, and thresholds mapping for new IoT sensors without requiring code changes.",
+      "total_metric_types": "Total  Metric Types",
+      "key": "Key:",
+      "unit": "Unit:",
+      "no_metric_types_match": "No metric types match the selected filters."
+    },
+    "metricTypeDialog": {
+      "editTitle": "Edit Metric Type",
+      "addTitle": "Add New Metric Type",
+      "keyLabel": "Metric Key (Unique slug)",
+      "keyPlaceholder": "e.g. radiation_level",
+      "keyRequired": "Valid slug is required (lowercase letters, numbers and underscores only)",
+      "displayNameLabel": "Display Name",
+      "displayNamePlaceholder": "e.g. Radiation Level",
+      "displayNameRequired": "Display name is required",
+      "unitLabel": "Unit of Measurement",
+      "unitPlaceholder": "e.g. uSv/h or ppm",
+      "unitRequired": "Unit is required",
+      "iconLabel": "Material Icon Name",
+      "iconPlaceholder": "e.g. radiography or co2",
+      "iconRequired": "Icon name is required",
+      "categoryLabel": "Category",
+      "categoryRequired": "Category is required",
+      "selectCategory": "Select Category",
+      "activeToggle": "Metric Type is Active",
+      "saveMetricType": "Save Metric Type"
+    },
+    "profileIdentity": {
+      "updating": "Updating profile data...",
+      "personalInfo": "Personal Information",
+      "fullName": "Full Name",
+      "fullNamePlaceholder": "Dr. Alexander Vance",
+      "fullNameRequired": "Full name is required",
+      "email": "Email Address",
+      "emailPlaceholder": "a.vance@safelab.org",
+      "emailRequired": "Email address is required",
+      "emailValid": "Please enter a valid email address",
+      "phone": "Phone Number",
+      "phonePlaceholder": "+1 (555) 019-2834",
+      "phoneRequired": "Phone number is required",
+      "title": "Professional Title",
+      "employeeId": "Employee ID",
+      "saveChanges": "Save Changes",
+      "changePhoto": "Change photo",
+      "accountStatus": "Account Status",
+      "systemState": "System State",
+      "activeVerified": "Active — Verified",
+      "accessTier": "Access Tier",
+      "labCoordinator": "Lab Coordinator (Tier 1)",
+      "requestRoleChange": "Request role change",
+      "shiftPreferences": "Shift Preferences",
+      "defaultStart": "Default Start",
+      "duration": "Duration",
+      "autoGenerateReport": "Auto-generate shift report",
+      "compileData": "Compile data at end of shift"
+    },
+    "alertsNotifications": {
+      "channelTitle": "Notifications Channel",
+      "emailNotifications": "Email Notifications",
+      "emailDesc": "Daily digests and critical alerts via email",
+      "inAppNotifications": "In-App Notifications",
+      "inAppDesc": "Real-time alerts within the dashboard",
+      "activitySummary": "Lab Activity Summary",
+      "dailySummary": "Daily Summary",
+      "dailyDesc": "A concise snapshot of all lab readings and events over the past 24 hours.",
+      "weeklyReport": "Weekly Report",
+      "weeklyDesc": "Comprehensive trends and compliance documentation for the previous week.",
+      "instantAlerts": "Instant Sensor Alerts",
+      "instantDesc": "Immediate notification for any sensor hardware malfunctions or connectivity loss."
+    },
+    "securityAccess": {
+      "changePassword": "Change Password",
+      "currentPassword": "Current Password",
+      "newPassword": "New Password",
+      "passwordHelp": "Password must be 8+ characters",
+      "confirmNewPassword": "Confirm New Password",
+      "updatePassword": "Update Password",
+      "tfa": "Two-Factor Authentication (2FA)",
+      "tfaDesc": "Add an extra layer of security to your account by requiring more than just a password to log in.",
+      "enable2fa": "Enable 2FA",
+      "loginActivity": "Login Activity",
+      "lastLogin": "Last login: {{time}} from {{location}}",
+      "activeSessions": "Active Sessions",
+      "sessionsCount": "{{count}} devices currently connected",
+      "accountStatus": "Account Status",
+      "verifiedTech": "Verified Lab Technician (Tier 1)",
+      "": "••••••••",
+      "lastLoginSwiss": "Last login: {{time}} ago from Swiss",
+      "2_devices_currently_connected": "2 devices currently connected"
+    },
+    "usersPermissions": {
+      "receivedInvitations": "Invitations Received",
+      "role": "Role: {{role}}",
+      "accept": "Accept",
+      "reject": "Reject",
+      "workspaceSettings": "Workspace Settings",
+      "workspaceName": "Workspace Name",
+      "saveWorkspaceName": "Save Name",
+      "roleDefinitions": "Role definitions",
+      "permissions": "permissions",
+      "inviteUser": "Invite New User",
+      "emailRequired": "Email address is required",
+      "emailValid": "Please enter a valid email address",
+      "selectRole": "Select role",
+      "chooseRole": "Choose a role",
+      "roleRequired": "Please select a role",
+      "selectLabAccess": "Select lab access",
+      "allLabs": "All Labs",
+      "personalMessage": "Personal message (optional)",
+      "messagePlaceholder": "Add a note to the invitation email...",
+      "sendInvitation": "Send Invitation",
+      "pendingInvitations": "Pending Invitations",
+      "invitedAs": "Invited as",
+      "noPending": "No pending invitations",
+      "roles": {
+        "administrator": "Administrator",
+        "supervisor": "Supervisor",
+        "operator": "Operator",
+        "viewer": "Viewer"
+      },
+      "editPermissions": "Edit Permissions",
+      "resend": "Resend",
+      "emailPlaceholder": "e.g. name@safelab.org"
+    },
+    "thresholdConfig": {
+      "changesNotice": "Changes to thresholds apply immediately and are logged in the audit trail.",
+      "addEquipment": "Add Equipment",
+      "notificationPrefs": "Notification Preferences",
+      "alertsTitle": "Critical & Warning Alerts",
+      "inApp": "In-app",
+      "email": "Email",
+      "sms": "SMS",
+      "quietHours": "Quiet Hours",
+      "quietHoursSub": "Only critical alerts will be sent during these hours.",
+      "to": "to",
+      "onCallCoordinator": "On-call Coordinator",
+      "onCallSub": "Primary contact for off-hours critical incidents.",
+      "usersAccess": "Users & Access",
+      "usersAccessSub": "Configure user privileges and access levels to specific laboratory units.",
+      "changesSaved": "Changes saved successfully",
+      "equipment": "Equipment",
+      "lab": "Lab",
+      "minThreshold": "Min Threshold",
+      "maxThreshold": "Max Threshold",
+      "warningAt": "Warning At",
+      "current": "Current",
+      "action": "Action",
+      "updateLimits": "Update limits",
+      "1000_pm": "10:00 PM",
+      "0600_am": "06:00 AM"
+    },
+    "automationRules": {
+      "loading": "Loading automation rules...",
+      "noRules": "No Automation Rules defined",
+      "addRuleHint": "Click \"+ Add Rule\" in the top bar to create your first rule.",
+      "neverTriggered": "Never triggered",
+      "trigger": "Trigger",
+      "action": "Action",
+      "appliesTo": "Applies to: {{lab}}",
+      "createRule": "Create New Rule",
+      "ruleName": "Rule Name",
+      "ruleNamePlaceholder": "e.g., Night Shift Temp Drop",
+      "ruleNameRequired": "Rule name is required",
+      "scope": "Scope",
+      "allLabs": "All labs",
+      "specificLab": "Specific lab",
+      "selectLab": "Select Laboratory",
+      "labRequired": "Please choose a laboratory",
+      "actionHvac": "Activate HVAC cooling/heating",
+      "actionHvacSub": "System attempts to self-correct environment",
+      "actionPush": "Send Push Notification",
+      "actionPushSub": "Alert active users in the app",
+      "actionSms": "Send SMS",
+      "actionSmsSub": "Page the on-call coordinator directly",
+      "actionLog": "Log event only",
+      "actionLogSub": "Record in history without alerts",
+      "executionLimits": "Execution Limits",
+      "doNotTriggerText": "Do not trigger more than once every",
+      "mins": "mins.",
+      "autoResolve": "Auto-resolve when condition clears",
+      "saveRule": "Save Rule",
+      "when": "When",
+      "then": "Then",
+      "for": "for",
+      "min": "min",
+      "sections": {
+        "triggerCondition": "1. TRIGGER CONDITION",
+        "automatedActions": "2. AUTOMATED ACTIONS",
+        "executionLimits": "3. EXECUTION LIMITS"
+      },
+      "forMoreThan": "for more than",
+      "minutes": "minutes.",
+      "metrics": {
+        "temperature": "Temperature",
+        "humidity": "Humidity",
+        "co2": "CO2"
+      },
+      "actionsMapped": {
+        "activate_hvac": "Activate HVAC cooling boost",
+        "increase_ventilation": "Increase ventilation",
+        "send_sms": "Send SMS to on-call coordinator",
+        "send_push": "Send Push Notification",
+        "log_event": "Log event with LOW priority"
+      },
+      "gt": "=\">&gt;=",
+      "lt": "&lt;=",
+      "eg_80": "e.g. 8.0"
+    },
+    "equipmentDialog": {
+      "editTitle": "Edit Equipment Configuration",
+      "addTitle": "Add New Equipment",
+      "nameLabel": "Equipment Name",
+      "namePlaceholder": "e.g. Refrigerator B2 or Incubator 4",
+      "nameRequired": "Equipment name is required",
+      "laboratory": "Laboratory",
+      "selectLab": "Select Laboratory",
+      "labRequired": "Laboratory is required",
+      "categoryIcon": "Category / Icon",
+      "measurementUnit": "Measurement Unit",
+      "minThreshold": "Min Threshold",
+      "maxThreshold": "Max Threshold",
+      "warningThreshold": "Warning Threshold",
+      "noMinLimit": "No min limit",
+      "noMaxLimit": "No max limit",
+      "noWarningLimit": "No warning limit",
+      "helpNote": "By defining the safe operating and warning ranges, readings that exceed these thresholds will generate automatic notifications and alerts in the dashboard.",
+      "updateEquipment": "Update Equipment",
+      "createEquipment": "Create Equipment",
+      "icons": {
+        "kitchen": "Refrigerator / Freezer",
+        "biotech": "Incubator / Autoclave",
+        "device_thermostat": "Chamber / Ambient Temp",
+        "opacity": "Humidity Regulator",
+        "bubble_chart": "Gas Monitor"
+      }
+    }
+  },
+  "laboratoryStats": {
+    "lastUpdate": "Last Update",
+    "live": "Live",
+    "nextMaintenance": "Next Maintenance",
+    "inDays": "In {{count}} days"
+  },
+  "laboratoriesDetail": {
+    "loadingDetails": "Loading laboratory details...",
+    "realtimeMetrics": "Real-time Metrics",
+    "liveData": "Live data",
+    "viewIncident": "View Incident",
+    "sensorsActive": "sensors active",
+    "emergencyProtocol": "Emergency Protocol",
+    "addObservation": "Add Observation",
+    "tempLabel": "Temp",
+    "activeIncidentLabel": "Active incident —",
+    "estBreach": "Est. breach in",
+    "atCurrentRate": "At current rate of escalation...",
+    "viewDetails": "View Details",
+    "investigateIncident": "Investigate Incident",
+    "addManualObservation": "Add Manual Observation",
+    "forLab": "For {{name}}",
+    "logType": "Log Type",
+    "selectLogType": "Select Log Type",
+    "logTypeRequired": "Log type is required",
+    "observationDetails": "Observation Details",
+    "enterDetails": "Enter observation details...",
+    "detailsRequired": "Observation details are required",
+    "saveObservation": "Save Observation",
+    "recentLogs": "Recent Logs",
+    "viewFullLog": "View Full Log",
+    "noLogs": "No logs available for this laboratory.",
+    "activeAutomations": "Active Automations",
+    "manage": "Manage",
+    "statusRunning": "Running",
+    "statusStandby": "Standby",
+    "noRules": "No active automation rules for this laboratory.",
+    "thresholdExceededInfo": "Threshold: {{threshold}}{{unit}} — exceeded by {{diff}}{{unit}}",
+    "tabs": {
+      "systems": "Systems",
+      "notifications": "Notifications",
+      "reports": "Reports",
+      "settings": "Settings"
+    },
+    "logTypes": {
+      "laboratory": "Laboratory log",
+      "maintenance": "Maintenance log",
+      "incident": "Incident log"
+    },
+    "tabSettings": {
+      "title": "Laboratory Settings",
+      "subtitle": "Manage advanced settings and deletion options for this facility.",
+      "dangerZone": {
+        "title": "Danger Zone",
+        "subtitle": "Permanently delete this laboratory and all associated operational data.",
+        "description": "Once you delete a laboratory, all its historical sensor readings, active alerts, and configuration metrics will be permanently erased from the system. This action is irreversible.",
+        "deleteButton": "Delete Laboratory",
+        "confirmDelete": "Are you sure you want to permanently delete \"{{name}}\"? This action cannot be undone."
+      }
+    }
+  },
+  "laboratoryForm": {
+    "basicInfo": "Basic Information",
+    "basicInfoSub": "General details about the laboratory",
+    "name": "Laboratory Name *",
+    "namePlaceholder": "e.g. Chemistry Lab A",
+    "code": "Lab ID / Code *",
+    "codePlaceholder": "e.g. LAB-CHM-001",
+    "building": "Building",
+    "selectBuilding": "Select building",
+    "floor": "Floor",
+    "selectFloor": "Select floor",
+    "roomNumber": "Room Number",
+    "roomPlaceholder": "e.g. 204",
+    "type": "Laboratory Type *",
+    "selectType": "Select type",
+    "nextMaintenance": "Next Maintenance Date",
+    "description": "Description",
+    "descriptionPlaceholder": "Brief description of the laboratory's purpose and any special safety requirements...",
+    "sensors": {
+      "title": "Sensors & Systems",
+      "subtitle": "Enable or disable monitoring modules for this laboratory and configure safety thresholds",
+      "monitor": "Monitor {{name}} ({{unit}})",
+      "min": "Min",
+      "max": "Max",
+      "noLimit": "No limit"
+    },
+    "notifications": {
+      "title": "Notification Preferences",
+      "subtitle": "Choose how and when you receive laboratory alerts",
+      "email": "Email",
+      "emailDesc": "Receive alerts via email",
+      "sms": "SMS",
+      "smsDesc": "Text alerts to your phone",
+      "push": "Push Notifications",
+      "pushDesc": "In-app push alerts",
+      "criticalOnly": "Critical Alerts Only",
+      "criticalOnlyDesc": "Suppress non-critical notifications"
+    },
+    "options": {
+      "buildings": {
+        "Building A": "Building A",
+        "Building B": "Building B",
+        "Building C": "Building C",
+        "Building D": "Building D"
+      },
+      "floors": {
+        "Basement": "Basement",
+        "Floor B1": "Floor B1",
+        "Level 1": "Level 1",
+        "Floor 1": "Floor 1",
+        "Floor 2": "Floor 2",
+        "Floor 3": "Floor 3",
+        "Floor 4": "Floor 4"
+      },
+      "labTypes": {
+        "Biological Safety": "Biological Safety",
+        "Chemical Synthesis": "Chemical Synthesis",
+        "Cryogenic Storage": "Cryogenic Storage",
+        "Clean Room ISO 5": "Clean Room ISO 5",
+        "Material Science": "Material Science",
+        "Analytical": "Analytical",
+        "Radiation Controlled": "Radiation Controlled",
+        "Molecular Biology": "Molecular Biology",
+        "Environmental": "Environmental",
+        "Biohazard Level 2": "Biohazard Level 2",
+        "Biohazard Level 3": "Biohazard Level 3"
+      }
+    }
+  },
+  "layout": {
+    "loading": "Loading...",
+    "errors": {
+      "mqttDisconnected": "INFRASTRUCTURE ERROR: The platform cannot communicate with the MQTT telemetry server. Real-time readings are temporarily suspended.",
+      "serverDisconnected": "CONNECTION ERROR: Cannot establish contact with the main server."
+    },
+    "topbar": {
+      "toggleSidebar": "Toggle sidebar"
+    }
+  }
+}

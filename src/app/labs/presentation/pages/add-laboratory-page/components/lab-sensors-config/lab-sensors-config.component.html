@@ -1,0 +1,39 @@
+<app-card padding="section" [hoverLift]="true">
+  <app-section-header icon="sensors" iconColor="var(--mat-sys-primary)" title="{{ 'laboratoryForm.sensors.title' | translate }}"
+    subtitle="{{ 'laboratoryForm.sensors.subtitle' | translate }}" />
+
+  <div class="sensors-grid">
+    @for (sub of metricSubscriptions(); track sub.metricTypeId) {
+    <div class="sensor-card" [class.active]="sub.enabled">
+      <div class="sensor-card-header">
+        <app-icon-badge [color]="sub.enabled ? 'var(--mat-sys-primary)' : 'var(--mat-sys-on-surface-variant)'" size="md">
+          <mat-icon>{{ sub.metricTypeIcon }}</mat-icon>
+        </app-icon-badge>
+        <mat-slide-toggle [checked]="sub.enabled" (change)="toggleSubscription(sub.metricTypeId)" />
+      </div>
+      <h4 class="sensor-name">{{ sub.metricTypeDisplayName }}</h4>
+      <p class="sensor-desc">{{ 'laboratoryForm.sensors.monitor' | translate:{name: sub.metricTypeDisplayName, unit: sub.metricTypeUnit} }}</p>
+
+      @if (sub.enabled) {
+        <div class="thresholds-inputs">
+          <div class="threshold-field">
+            <label>{{ 'laboratoryForm.sensors.min' | translate }} ({{ sub.metricTypeUnit }})</label>
+            <input type="number" 
+                   [ngModel]="sub.minThreshold" 
+                   (ngModelChange)="onThresholdChange(sub.metricTypeId, 'min', $event)" 
+                   placeholder="{{ 'laboratoryForm.sensors.noLimit' | translate }}" />
+          </div>
+          <div class="threshold-field">
+            <label>{{ 'laboratoryForm.sensors.max' | translate }} ({{ sub.metricTypeUnit }})</label>
+            <input type="number" 
+                   [ngModel]="sub.maxThreshold" 
+                   (ngModelChange)="onThresholdChange(sub.metricTypeId, 'max', $event)" 
+                   placeholder="{{ 'laboratoryForm.sensors.noLimit' | translate }}" />
+          </div>
+        </div>
+      }
+    </div>
+    }
+  </div>
+</app-card>
+

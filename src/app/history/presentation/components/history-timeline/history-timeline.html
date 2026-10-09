@@ -1,0 +1,57 @@
+@if (grouped().length === 0) {
+<div class="empty-state">
+  <mat-icon>inbox</mat-icon>
+  <p>{{ 'history.timeline.noEventsMatch' | translate }}</p>
+</div>
+}
+
+@for (group of grouped(); track group.label) {
+<div class="history-group">
+  <p class="group-label">{{ group.label }}</p>
+
+  <div class="timeline-list">
+    @for (record of group.records; track record.id) {
+    <div class="timeline-item" (click)="select(record)">
+
+      <!-- Dot + line -->
+      <div class="timeline-dot-col">
+        <div class="timeline-dot" [class.dot-critical]="record.severity === 'Critical'"
+          [class.dot-resolved]="record.status === 'Resolved'" [class.dot-automation]="record.eventType === 'Automation'"
+          [class.dot-manual]="record.eventType === 'Manual'"
+          [class.dot-default]="record.severity !== 'Critical' && record.status !== 'Resolved' && record.eventType !== 'Automation' && record.eventType !== 'Manual'">
+        </div>
+        <div class="timeline-line"></div>
+      </div>
+
+      <!-- Content -->
+      <div class="timeline-content">
+        <div class="timeline-top-row">
+          <span class="timeline-time">{{ record.occurredAt | date: 'HH:mm' }}</span>
+          <span class="timeline-badge" [class.badge-critical]="record.severity === 'Critical'"
+            [class.badge-resolved]="record.status === 'Resolved'"
+            [class.badge-automation]="record.eventType === 'Automation'"
+            [class.badge-manual]="record.eventType === 'Manual'">
+            <mat-icon class="badge-icon">
+              {{ record.severity === 'Critical' ? 'error' :
+              record.status === 'Resolved' ? 'check_circle' :
+              record.eventType === 'Automation' ? 'settings' : 'edit_note' }}
+            </mat-icon>
+            {{ record.severity === 'Critical' ? 'Critical' :
+            record.status === 'Resolved' ? 'Resolved' :
+            record.eventType === 'Automation' ? 'Automation' : 'Manual Log' }}
+          </span>
+        </div>
+
+        <h3 class="timeline-title">{{ record.name }}</h3>
+        <p class="timeline-desc">{{ record.lab }} — {{ record.description }}</p>
+
+        <button class="timeline-link" (click)="$event.stopPropagation(); select(record)">
+          {{ (record.status === 'Resolved' ? 'history.timeline.viewIncident' : 'history.timeline.viewDetails') | translate }} →
+        </button>
+      </div>
+
+    </div>
+    }
+  </div>
+</div>
+}

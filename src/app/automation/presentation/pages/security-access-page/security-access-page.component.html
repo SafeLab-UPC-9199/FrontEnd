@@ -1,0 +1,104 @@
+<div class="page-body">
+
+  <div class="main-grid">
+
+    <!-- Change Password Card -->
+    <mat-card appearance="outlined" class="password-card">
+      <mat-card-content class="card-content">
+        <h2 class="card-title">{{ 'settingsPage.securityAccess.changePassword' | translate }}</h2>
+
+        <form [formGroup]="passwordForm" (ngSubmit)="onUpdatePassword()" class="form-container">
+          <div class="form-field">
+            <label class="field-label">{{ 'settingsPage.securityAccess.currentPassword' | translate }}</label>
+            <mat-form-field appearance="outline" subscriptSizing="dynamic">
+              <input matInput type="password" formControlName="currentPassword" [placeholder]="'settingsPage.securityAccess.' | translate">
+            </mat-form-field>
+          </div>
+
+          <div class="form-field">
+            <label class="field-label">{{ 'settingsPage.securityAccess.newPassword' | translate }}</label>
+            <mat-form-field appearance="outline" subscriptSizing="dynamic">
+              <input matInput type="password" formControlName="newPassword" [placeholder]="'settingsPage.securityAccess.' | translate">
+            </mat-form-field>
+            <div class="helper-text">{{ 'settingsPage.securityAccess.passwordHelp' | translate }}</div>
+          </div>
+
+          <div class="form-field">
+            <label class="field-label">{{ 'settingsPage.securityAccess.confirmNewPassword' | translate }}</label>
+            <mat-form-field appearance="outline" subscriptSizing="dynamic">
+              <input matInput type="password" formControlName="confirmPassword" [placeholder]="'settingsPage.securityAccess.' | translate">
+            </mat-form-field>
+          </div>
+
+          <div class="divider"></div>
+
+          <div class="actions-right">
+            <button type="submit" mat-flat-button color="primary">{{ 'settingsPage.securityAccess.updatePassword' | translate }}</button>
+          </div>
+        </form>
+      </mat-card-content>
+    </mat-card>
+
+    <!-- 2FA Card -->
+    <mat-card appearance="outlined" class="tfa-card">
+      <mat-card-content class="card-content tfa-content">
+        <h2 class="card-title">{{ 'settingsPage.securityAccess.tfa' | translate }}</h2>
+
+        <div class="tfa-illustration">
+          <div class="shield-icon">
+            <mat-icon>security</mat-icon>
+          </div>
+          <div class="device-icon">
+            <mat-icon>smartphone</mat-icon>
+          </div>
+        </div>
+
+        <p class="tfa-description">
+          {{ 'settingsPage.securityAccess.tfaDesc' | translate }}
+        </p>
+
+        <div class="spacer"></div>
+        <div class="divider"></div>
+
+        <button mat-stroked-button color="primary" class="full-width-btn" (click)="onEnable2FA()">{{ 'settingsPage.securityAccess.enable2fa' | translate }}</button>
+      </mat-card-content>
+    </mat-card>
+
+  </div>
+
+  <!-- Bottom Info Cards -->
+  <div class="info-grid">
+
+    <div class="info-card">
+      <div class="info-icon-container">
+        <mat-icon color="primary">history</mat-icon>
+      </div>
+      <div class="info-text">
+        <h3 class="info-title">{{ 'settingsPage.securityAccess.loginActivity' | translate }}</h3>
+        <p class="info-desc">{{ 'settingsPage.securityAccess.lastLoginSwiss' | translate }}</p>
+      </div>
+    </div>
+
+    <div class="info-card">
+      <div class="info-icon-container">
+        <mat-icon color="primary">devices</mat-icon>
+      </div>
+      <div class="info-text">
+        <h3 class="info-title">{{ 'settingsPage.securityAccess.activeSessions' | translate }}</h3>
+        <p class="info-desc">{{ 'settingsPage.securityAccess.2_devices_currently_connected' | translate }}</p>
+      </div>
+    </div>
+
+    <div class="info-card">
+      <div class="info-icon-container">
+        <mat-icon color="primary">verified_user</mat-icon>
+      </div>
+      <div class="info-text">
+        <h3 class="info-title">{{ 'settingsPage.securityAccess.accountStatus' | translate }}</h3>
+        <p class="info-desc">{{ 'settingsPage.securityAccess.verifiedTech' | translate }}</p>
+      </div>
+    </div>
+
+  </div>
+
+</div>

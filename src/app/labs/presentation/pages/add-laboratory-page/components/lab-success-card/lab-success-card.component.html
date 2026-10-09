@@ -1,0 +1,11 @@
+<div class="success-card">
+  <div class="success-icon-wrapper">
+    <mat-icon>check_circle</mat-icon>
+  </div>
+  <h2 class="success-title">{{ 'laboratories.success.title' | translate }}</h2>
+  <p class="success-desc"><strong>{{ createdLab()?.name }}</strong> {{ 'laboratories.success.description' | translate }}</p>
+  <div class="success-actions">
+    <button class="btn btn-save" (click)="goToLaboratories.emit()">{{ 'laboratories.success.viewAll' | translate }}</button>
+    <button class="btn btn-cancel" (click)="createAnother.emit()">{{ 'laboratories.success.createAnother' | translate }}</button>
+  </div>
+</div>

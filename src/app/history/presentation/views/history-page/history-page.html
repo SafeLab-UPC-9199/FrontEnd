@@ -1,0 +1,133 @@
+<mat-drawer-container class="drawer-container">
+  <mat-drawer-content>
+    <div class="history-page">
+
+      <!-- ② FILTER TABS + DATE + SEARCH -->
+      <div class="filters-top-bar">
+        <div class="filter-tabs">
+          <button class="filter-tab" [class.active]="selectedTab() === 'All events'"
+            (click)="selectedTab.set('All events')">{{ 'history.tabs.allEvents' | translate }}</button>
+          <button class="filter-tab" [class.active]="selectedTab() === 'Incidents'"
+            (click)="selectedTab.set('Incidents')">{{ 'history.tabs.incidents' | translate }}</button>
+          <button class="filter-tab" [class.active]="selectedTab() === 'Resolutions'"
+            (click)="selectedTab.set('Resolutions')">{{ 'history.tabs.resolutions' | translate }}</button>
+          <button class="filter-tab" [class.active]="selectedTab() === 'Manual observations'"
+            (click)="selectedTab.set('Manual observations')">{{ 'history.tabs.manualObservations' | translate
+            }}</button>
+          <button class="filter-tab" [class.active]="selectedTab() === 'Automations'"
+            (click)="selectedTab.set('Automations')">{{ 'history.tabs.automations' | translate }}</button>
+        </div>
+        <div class="filter-right">
+          <div style="position: relative; display: inline-flex; align-items: center; gap: 8px;">
+            <button class="date-btn" (click)="picker.open()">
+              <mat-icon>calendar_today</mat-icon>
+              @if (dateRange.value.start && dateRange.value.end) {
+                {{ dateRange.value.start | date:'dd/MM/yy' }} – {{ dateRange.value.end | date:'dd/MM/yy' }}
+              } @else if (dateRange.value.start) {
+                {{ dateRange.value.start | date:'dd/MM/yy' }}
+              } @else {
+                {{ 'history.filter.today' | translate }}
+              }
+            </button>
+            @if (dateRange.value.start || dateRange.value.end) {
+              <button mat-icon-button (click)="dateRange.reset(); $event.stopPropagation()" style="width: 32px; height: 32px; min-width: 32px; border: 1px solid #e5e7eb; border-radius: 8px; background: #f8fafc; color: #64748b; padding: 0; display: flex; align-items: center; justify-content: center;">
+                <mat-icon style="font-size: 16px; width: 16px; height: 16px; margin: 0;">close</mat-icon>
+              </button>
+            }
+
+            <mat-form-field style="width: 0; height: 0; padding: 0; margin: 0; visibility: hidden; position: absolute;">
+              <mat-date-range-input [formGroup]="dateRange" [rangePicker]="picker">
+                <input matStartDate formControlName="start">
+                <input matEndDate formControlName="end">
+              </mat-date-range-input>
+              <mat-date-range-picker #picker></mat-date-range-picker>
+            </mat-form-field>
+          </div>
+          <div class="search-box">
+            <mat-icon>search</mat-icon>
+            <input [placeholder]="'history.filter.searchPlaceholder' | translate" [value]="searchQuery()"
+              (input)="searchQuery.set(($any($event.target).value || '').trim())" />
+          </div>
+        </div>
+      </div>
+
+      <!-- ③ TWO-COLUMN LAYOUT -->
+      <div class="two-col-layout">
+
+        <!-- LEFT: Shift Timeline -->
+        <section class="timeline-panel">
+          <h2 class="panel-title">
+            <mat-icon>show_chart</mat-icon>
+            {{ 'history.panel.timeline' | translate }}
+          </h2>
+          @if (loading()) {
+            <div class="loading-state">
+              <mat-spinner diameter="36" />
+              <p>{{ 'layout.loading' | translate }}</p>
+            </div>
+          } @else {
+            <app-history-timeline [records]="filteredHistory()" (recordSelected)="openDrawer($event)" />
+          }
+        </section>
+
+      </div>
+
+    </div>
+  </mat-drawer-content>
+
+  <!-- DRAWER: detalles del evento -->
+  <mat-drawer #drawer position="end" mode="over" class="history-drawer">
+    <div class="drawer-header">
+      <h2>{{ 'history.drawer.title' | translate }}</h2>
+      <button mat-icon-button (click)="drawer.close()">
+        <mat-icon>close</mat-icon>
+      </button>
+    </div>
+
+    @if (selectedRecord; as record) {
+    <div style="padding: 16px 24px 0;">
+      <mat-chip-set>
+        <mat-chip color="warn" highlighted>{{ record.severity }}</mat-chip>
+        <mat-chip color="primary" highlighted>{{ record.status }}</mat-chip>
+      </mat-chip-set>
+    </div>
+
+    <div class="drawer-section">
+      <p class="drawer-label">{{ 'history.drawer.name' | translate }}</p>
+      <h3>{{ record.name }}</h3>
+    </div>
+
+    <div class="drawer-section">
+      <p class="drawer-label">{{ 'history.drawer.date' | translate }}</p>
+      <p>{{ record.occurredAt | date: 'medium' }}</p>
+    </div>
+
+    <div class="drawer-section">
+      <p class="drawer-label">{{ 'history.drawer.lab' | translate }}</p>
+      <p>{{ record.lab }}</p>
+    </div>
+
+    <div class="drawer-section">
+      <p class="drawer-label">{{ 'history.drawer.type' | translate }}</p>
+      <p>{{ record.eventType }}</p>
+    </div>
+
+    <mat-divider style="margin: 16px 0;" />
+
+    <div class="drawer-section">
+      <p class="drawer-label">{{ 'history.drawer.description' | translate }}</p>
+      <p class="drawer-description">{{ record.description }}</p>
+    </div>
+
+    <div class="drawer-actions">
+      <button mat-raised-button color="primary" (click)="openPlaceholder('Generate report')">
+        <mat-icon>picture_as_pdf</mat-icon> {{ 'history.drawer.generateReport' | translate }}
+      </button>
+      <button mat-stroked-button (click)="openPlaceholder('View laboratory')">
+        <mat-icon>science</mat-icon> {{ 'history.drawer.viewLab' | translate }}
+      </button>
+    </div>
+    }
+  </mat-drawer>
+
+</mat-drawer-container>

@@ -1,0 +1,222 @@
+<div class="resolve-container">
+  @if (isLoading()) {
+    <div class="loading-state">
+      <mat-spinner diameter="36" />
+      <p>{{ 'layout.loading' | translate }}</p>
+    </div>
+  } @else {
+    <!-- Breadcrumb -->
+    <nav class="breadcrumb">
+      <a routerLink="/alerts" class="breadcrumb-link">{{ 'incident.resolve.breadcrumbIncidents' | translate }}</a>
+      <mat-icon>chevron_right</mat-icon>
+      <a [routerLink]="['/alerts/incident']" [queryParams]="{ id: alertId() }" class="breadcrumb-link">{{ 'incident.details.incidentId' | translate }}{{ alert()?.id || '4821' }}</a>
+      <mat-icon>chevron_right</mat-icon>
+      <span class="breadcrumb-current">{{ 'incident.resolve.breadcrumbResolve' | translate }}</span>
+    </nav>
+  
+    <!-- Page Title -->
+    <div class="page-header">
+      <div class="page-header-left">
+        <div class="title-row">
+          <div class="status-dot"></div>
+          <h1 class="page-title">{{ 'incident.resolve.resolveIncident' | translate }}</h1>
+          <span class="incident-badge">{{ 'incident.details.incidentId' | translate }} #{{ alert()?.id || '4821' }}</span>
+        </div>
+        <p class="page-subtitle">
+          <mat-icon class="subtitle-icon">device_thermostat</mat-icon> {{ affectedEquipment() }}
+          <span class="sep">·</span>
+          <mat-icon class="subtitle-icon">science</mat-icon> {{ alert()?.labName || 'Laboratory' }}
+          <span class="sep">·</span>
+          <mat-icon class="subtitle-icon">schedule</mat-icon> {{ 'incident.resolve.activeForLabel' | translate }} {{ startedTimeAgo() }}
+        </p>
+      </div>
+      <div class="severity-badge-wrap">
+        <span class="severity-chip" [ngClass]="{'pill-critical': alert()?.severity?.toLowerCase() === 'critical', 'pill-warning': alert()?.severity?.toLowerCase() === 'warning'}">
+          <mat-icon>warning</mat-icon> {{ alert()?.severity || 'CRITICAL' }}
+        </span>
+      </div>
+    </div>
+  
+    <div class="resolve-grid">
+      <!-- Left Column: Form -->
+      <div class="resolve-left">
+        
+        <!-- Resolution Note Card -->
+        <div class="form-card">
+          <div class="form-card-header">
+            <h3 class="form-card-title">{{ 'incident.resolve.resolutionNote' | translate }}</h3>
+            <span class="required-chip">{{ 'incident.resolve.required' | translate }}</span>
+          </div>
+          <p class="form-card-desc">{{ 'incident.resolve.actionDesc' | translate }}</p>
+          
+          <textarea 
+            [ngModel]="resolutionNote()" 
+            (ngModelChange)="onNoteChange($event)"
+            [placeholder]="'incident.resolve.placeholder' | translate" 
+            class="note-textarea"
+            maxlength="500"></textarea>
+          
+          <div class="textarea-footer">
+            <span class="char-count" [class.max-reached]="noteLength >= MAX_CHARS">{{ noteLength }} / {{ MAX_CHARS }} {{ 'incident.resolve.chars' | translate }}</span>
+          </div>
+        </div>
+  
+        <!-- Resolution Type Card -->
+        <div class="form-card">
+          <h3 class="form-card-title">{{ 'incident.resolve.typeTitle' | translate }}</h3>
+          <p class="form-card-desc">{{ 'incident.resolve.typeDesc' | translate }}</p>
+          
+          <div class="type-buttons">
+            <button 
+              type="button" 
+              class="type-btn" 
+              [class.active]="resolutionType() === 'manual'"
+              (click)="setResolutionType('manual')">
+              <mat-icon class="type-btn-icon">engineering</mat-icon>
+              <span class="type-btn-label">{{ 'incident.resolve.manualFix' | translate }}</span>
+              <span class="type-btn-sub">{{ 'incident.resolve.resolvedStaff' | translate }}</span>
+            </button>
+  
+            <button 
+              type="button" 
+              class="type-btn" 
+              [class.active]="resolutionType() === 'automated'"
+              (click)="setResolutionType('automated')">
+              <mat-icon class="type-btn-icon">bolt</mat-icon>
+              <span class="type-btn-label">{{ 'incident.resolve.automated' | translate }}</span>
+              <span class="type-btn-sub">{{ 'incident.resolve.systemResolved' | translate }}</span>
+            </button>
+  
+            <button 
+              type="button" 
+              class="type-btn" 
+              [class.active]="resolutionType() === 'escalated'"
+              (click)="setResolutionType('escalated')">
+              <mat-icon class="type-btn-icon">supervisor_account</mat-icon>
+              <span class="type-btn-label">{{ 'incident.resolve.escalated' | translate }}</span>
+              <span class="type-btn-sub">{{ 'incident.resolve.closedSupervisor' | translate }}</span>
+            </button>
+          </div>
+        </div>
+  
+        <!-- Follow up Action Card -->
+        <div class="form-card option-card" [class.active]="scheduleFollowUp()" (click)="toggleFollowUp()">
+          <div class="option-checkbox" [class.checked]="scheduleFollowUp()">
+            <mat-icon *ngIf="scheduleFollowUp()">check</mat-icon>
+          </div>
+          <div class="option-content">
+            <h4 class="option-title">
+              {{ 'incident.resolve.followUpTitle' | translate }}
+            </h4>
+            <span class="followup-sub">{{ 'incident.resolve.followUpSub' | translate:{name: affectedEquipment()} }}</span>
+          </div>
+        </div>
+  
+      </div>
+  
+      <!-- Right Column: Details & Attachment -->
+      <div class="resolve-right">
+        
+        <!-- Incident Summary Card -->
+        <div class="sidebar-card">
+          <h4 class="sidebar-card-title">{{ 'incident.resolve.incidentSummary' | translate }}</h4>
+          <div class="summary-list">
+            <div class="summary-item">
+              <div class="summary-label">
+                <mat-icon class="s-icon">sensors</mat-icon> {{ 'incident.resolve.sensor' | translate }}
+              </div>
+              <span class="summary-value">{{ sensorId() }}</span>
+            </div>
+            
+            <div class="summary-item">
+              <div class="summary-label">
+                <mat-icon class="s-icon">device_thermostat</mat-icon> {{ 'incident.resolve.currentValue' | translate }}
+              </div>
+              <span class="summary-value text-red">{{ currentValue() }}</span>
+              <span class="threshold-note">({{ 'incident.resolve.threshold' | translate }}: {{ thresholdValue() }})</span>
+            </div>
+  
+            <div class="summary-item">
+              <div class="summary-label">
+                <mat-icon class="s-icon">schedule</mat-icon> {{ 'incident.resolve.triggeredAt' | translate }}
+              </div>
+              <span class="summary-value">{{ startedTimeAbsolute() }} {{ 'incident.resolve.today' | translate }}</span>
+            </div>
+  
+            <div class="summary-item">
+              <div class="summary-label">
+                <mat-icon class="s-icon">bolt</mat-icon> {{ 'incident.resolve.location' | translate }}
+              </div>
+              <span class="summary-value">{{ location() }}</span>
+            </div>
+          </div>
+          
+          <div class="summary-footer">
+            <mat-icon class="f-icon">info</mat-icon>
+            <span>{{ 'incident.resolve.exceededMessage' | translate:{exceededBy: exceededByValue(), duration: startedTimeAgo()} }}</span>
+          </div>
+        </div>
+  
+        <!-- Attachment Card -->
+        <div class="sidebar-card">
+          <h4 class="sidebar-card-title">
+            {{ 'incident.resolve.photoAttachment' | translate }}
+            <span class="optional-badge">{{ 'incident.resolve.optional' | translate }}</span>
+          </h4>
+          
+          <!-- Dropzone -->
+          <div 
+            *ngIf="!uploadedFilePreview()"
+            class="upload-dropzone"
+            [class.dragover]="isDraggingOver()"
+            (dragover)="onDragOver($event)"
+            (dragleave)="onDragLeave()"
+            (drop)="onDrop($event)"
+            (click)="fileInput.click()">
+            <input type="file" #fileInput style="display:none;" (change)="onFileSelected($event)" accept="image/png, image/jpeg">
+            <mat-icon class="upload-icon">cloud_upload</mat-icon>
+            <span class="upload-main-text">{{ 'incident.resolve.uploadText' | translate }}</span>
+            <span class="upload-sub-text">{{ 'incident.resolve.uploadSubText' | translate }}</span>
+            <span class="upload-tip">
+              <mat-icon>verified</mat-icon>
+              {{ 'incident.resolve.recommendedAudit' | translate }}
+            </span>
+          </div>
+  
+          <!-- Preview -->
+          <div *ngIf="uploadedFilePreview()" class="upload-preview-container">
+            <div class="preview-img-wrap">
+              <img [src]="uploadedFilePreview()" [alt]="'incident.resolve.attachedPhotoAlt' | translate" class="preview-img" />
+            </div>
+            <div class="preview-footer">
+              <span class="preview-filename">
+                <mat-icon style="font-size:14px;width:14px;height:14px;">image</mat-icon>
+                {{ uploadedFileName() }}
+              </span>
+              <button class="remove-btn" (click)="removePhoto()">
+                <mat-icon>delete</mat-icon> {{ 'incident.resolve.remove' | translate }}
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+  
+    </div>
+  
+    <!-- Footer Actions -->
+    <div class="footer-bar">
+      <p class="footer-note">
+        <mat-icon>lock</mat-icon>
+        {{ 'incident.resolve.permanentLogNotice' | translate }}
+      </p>
+      <div class="footer-actions">
+        <a [routerLink]="['/alerts/incident']" [queryParams]="{ id: alertId() }" class="btn btn-cancel">
+          <mat-icon>close</mat-icon> {{ 'common.cancel' | translate }}
+        </a>
+        <button class="btn btn-confirm" [disabled]="!canConfirm" (click)="onConfirm()">
+          <mat-icon>check_circle</mat-icon> {{ 'incident.resolve.confirmBtn' | translate }}
+        </button>
+      </div>
+    </div>
+  }
+</div>

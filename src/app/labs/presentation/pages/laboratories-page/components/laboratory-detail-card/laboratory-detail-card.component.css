@@ -1,0 +1,389 @@
+:host {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  min-width: 0;
+  container-type: inline-size;
+  container-name: lab-card;
+}
+
+/* Card border override por estado */
+:host ::ng-deep .card-critical>* {}
+
+.card-critical {
+  border-color: #fca5a5 !important;
+}
+
+.card-warning {
+  border-color: #fed7aa !important;
+}
+
+/* ── HEADER ─────────────────────────────────────────────────────── */
+.lab-card-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 20px 20px 14px;
+}
+
+.lab-card-info {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  min-width: 0;
+}
+
+.lab-card-name {
+  font-size: 18px;
+  font-weight: 700;
+  color: #0f172a;
+  margin: 0;
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+}
+
+.lab-card-location {
+  font-size: 13px;
+  color: #64748b;
+  font-weight: 400;
+}
+
+/* Badge overrides para que se vea como en el mockup */
+.lab-card-header app-status-badge ::ng-deep .status-badge {
+  border-radius: 6px !important;
+  font-size: 10px !important;
+  font-weight: 700 !important;
+  padding: 3px 9px !important;
+  letter-spacing: 0.05em !important;
+  border: 1px solid color-mix(in srgb, var(--badge-color) 30%, transparent) !important;
+  background-color: color-mix(in srgb, var(--badge-color) 10%, transparent) !important;
+}
+
+/* ── TEMPERATURA PRINCIPAL ──────────────────────────────────────── */
+.temp-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 0 20px 14px;
+  padding: 10px 14px;
+  border-radius: 10px;
+  background: #f8fafc;
+  border: 1px solid #f1f5f9;
+}
+
+.temp-row--critical {
+  background: #fff5f5;
+  border-color: #fee2e2;
+}
+
+.temp-row--warning {
+  background: #fffbeb;
+  border-color: #fef3c7;
+}
+
+.temp-row-left {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.temp-icon {
+  font-size: 18px !important;
+  width: 18px !important;
+  height: 18px !important;
+}
+
+.icon-critical {
+  color: #dc2626;
+}
+
+.icon-warning {
+  color: #d97706;
+}
+
+.icon-normal {
+  color: #64748b;
+}
+
+.temp-label {
+  font-size: 13px;
+  font-weight: 500;
+  color: #64748b;
+}
+
+.temp-value {
+  font-size: 22px;
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  line-height: 1;
+}
+
+.text-critical {
+  color: #dc2626;
+}
+
+.text-warning {
+  color: #d97706;
+}
+
+.text-normal {
+  color: #0f172a;
+}
+
+/* Pill de tendencia */
+.trend-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+  margin-left: auto;
+  padding: 3px 8px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.trend-pill--critical {
+  background: #fee2e2;
+  color: #dc2626;
+}
+
+.trend-pill--warning {
+  background: #fef3c7;
+  color: #d97706;
+}
+
+.trend-pill--normal {
+  background: #dcfce7;
+  color: #16a34a;
+}
+
+.trend-icon {
+  font-size: 14px !important;
+  width: 14px !important;
+  height: 14px !important;
+}
+
+/* ── MÉTRICAS SECUNDARIAS ───────────────────────────────────────── */
+.secondary-metrics {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+  padding: 0 20px 16px;
+}
+
+.sec-metric-cell {
+  border: 1px solid #e5e7eb;
+  border-radius: 10px;
+  padding: 12px 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  background: #fff;
+  transition: border-color 0.15s;
+}
+
+.sec-metric-cell.sev-critical {
+  border-color: #fecaca;
+  background: #fff5f5;
+}
+
+.sec-metric-cell.sev-warning {
+  border-color: #fed7aa;
+  background: #fffbeb;
+}
+
+.sec-metric-label {
+  font-size: 10px;
+  font-weight: 700;
+  color: #94a3b8;
+  letter-spacing: 0.08em;
+}
+
+.sec-metric-value {
+  font-size: 20px;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+  color: #0f172a;
+  display: flex;
+  align-items: baseline;
+  gap: 3px;
+}
+
+.sec-metric-arrow {
+  font-size: 14px;
+  line-height: 1;
+}
+
+/* ── INCIDENT BANNER ────────────────────────────────────────────── */
+.incident-banner,
+.warning-banner {
+  margin: 0 20px 14px;
+  padding: 10px 14px;
+  border-radius: 8px;
+  border-left: 4px solid;
+}
+
+.incident-banner {
+  background: #fff5f5;
+  border: 1px solid #fee2e2;
+  border-left: 4px solid #ef4444;
+}
+
+.warning-banner {
+  background: #fffbeb;
+  border-color: #f59e0b;
+  border-left: 4px solid #f59e0b;
+}
+
+.incident-banner-body {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+}
+
+.incident-icon {
+  font-size: 18px !important;
+  width: 18px !important;
+  height: 18px !important;
+  color: #ef4444;
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+
+.warning-icon {
+  font-size: 18px !important;
+  width: 18px !important;
+  height: 18px !important;
+  color: #f59e0b;
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+
+.incident-text-group {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.incident-title {
+  font-size: 13px;
+  font-weight: 700;
+  color: #b91c1c;
+}
+
+.warning-title {
+  font-size: 13px;
+  font-weight: 600;
+  color: #92400e;
+}
+
+.warning-title strong {
+  font-weight: 800;
+}
+
+.incident-desc {
+  font-size: 12px;
+  color: #6b7280;
+  line-height: 1.4;
+}
+
+/* ── DIVIDER ────────────────────────────────────────────────────── */
+.card-divider {
+  height: 1px;
+  background: #f1f5f9;
+  margin-top: auto;
+}
+
+/* ── FOOTER ─────────────────────────────────────────────────────── */
+.lab-card-footer {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 14px 20px 18px;
+}
+
+.btn-view-details {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 9px 14px;
+  border: 1.5px solid #e2e8f0;
+  border-radius: 8px;
+  font-size: 13px;
+  font-weight: 600;
+  color: #374151;
+  text-decoration: none;
+  background: #fff;
+  transition: border-color 0.15s, background 0.15s;
+  white-space: nowrap;
+}
+
+.btn-view-details:hover {
+  border-color: #94a3b8;
+  background: #f8fafc;
+}
+
+.btn-investigate {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 9px 14px;
+  border-radius: 8px;
+  border: none;
+  font-size: 13px;
+  font-weight: 700;
+  text-decoration: none;
+  cursor: pointer;
+  transition: filter 0.15s, transform 0.15s;
+  white-space: nowrap;
+}
+
+.btn-investigate:hover {
+  filter: brightness(0.92);
+  transform: translateY(-1px);
+}
+
+.btn-investigate--critical {
+  background: #dc2626;
+  color: #fff;
+}
+
+.btn-investigate--warning {
+  background: #f97316;
+  color: #fff;
+}
+
+.btn-icon {
+  font-size: 16px !important;
+  width: 16px !important;
+  height: 16px !important;
+}
+
+/* ── RESPONSIVE ─────────────────────────────────────────────────── */
+@container lab-card (max-width: 280px) {
+  .lab-card-header {
+    padding: 14px 14px 10px;
+  }
+
+  .temp-row {
+    margin: 0 14px 12px;
+  }
+
+  .secondary-metrics {
+    padding: 0 14px 12px;
+  }
+
+  .lab-card-footer {
+    padding: 12px 14px 16px;
+  }
+
+  .incident-banner,
+  .warning-banner {
+    margin: 0 14px 12px;
+  }
+}

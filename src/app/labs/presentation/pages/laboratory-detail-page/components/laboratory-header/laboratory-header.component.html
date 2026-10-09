@@ -1,0 +1,12 @@
+<div class="lab-header">
+  <div class="lab-header-left">
+    <div class="lab-title-row">
+      <h1 class="lab-name">{{ lab().name }} — {{ lab().type }}</h1>
+      <app-status-badge
+        [severity]="lab().isCritical() ? 'critical' : lab().isWarning() ? 'warning' : 'normal'"
+        [label]="lab().overallStatus"
+        [showDot]="true" />
+    </div>
+    <p class="lab-meta">{{ lab().building }} · {{ lab().floor }} · {{ lab().metrics.length * 2 }} {{ 'laboratoriesDetail.sensorsActive' | translate }}</p>
+  </div>
+</div>

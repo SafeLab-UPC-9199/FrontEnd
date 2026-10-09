@@ -1,0 +1,64 @@
+<div class="side-sheet-container">
+  <!-- Header -->
+  <div class="dialog-header">
+    <div class="dialog-header-text">
+      <h2 class="dialog-title">{{ 'laboratoriesDetail.addManualObservation' | translate }}</h2>
+      @if (data && data.labName) {
+        <span class="dialog-subtitle">{{ 'laboratoriesDetail.forLab' | translate:{name: data.labName} }}</span>
+      }
+    </div>
+    <button type="button" class="close-btn" (click)="onCancel()" [attr.aria-label]="'common.closeDialog' | translate">
+      <mat-icon>close</mat-icon>
+    </button>
+  </div>
+
+  <!-- Form Body -->
+  <div class="dialog-content-scroll" [formGroup]="observationForm">
+    <!-- Log Type Selector -->
+    <div class="form-group">
+      <label class="form-label">{{ 'laboratoriesDetail.logType' | translate }}</label>
+      <div class="input-with-icon" [class.error]="observationForm.get('type')?.invalid && observationForm.get('type')?.touched">
+        <mat-icon class="input-icon">category</mat-icon>
+        <mat-select formControlName="type" placeholder="{{ 'laboratoriesDetail.selectLogType' | translate }}" class="custom-select-control">
+          @for (type of logTypes; track type) {
+            <mat-option [value]="type">
+              {{ 'laboratoriesDetail.logTypes.' + (type === 'Laboratory log' ? 'laboratory' : type === 'Maintenance log' ? 'maintenance' : 'incident') | translate }}
+            </mat-option>
+          }
+        </mat-select>
+      </div>
+      @if (observationForm.get('type')?.invalid && observationForm.get('type')?.touched) {
+        <span class="error-text">{{ 'laboratoriesDetail.logTypeRequired' | translate }}</span>
+      }
+    </div>
+
+    <!-- Observation Textarea -->
+    <div class="form-group">
+      <label class="form-label">{{ 'laboratoriesDetail.observationDetails' | translate }}</label>
+      <div class="textarea-container" [class.error]="observationForm.get('text')?.invalid && observationForm.get('text')?.touched">
+        <textarea
+          formControlName="text"
+          placeholder="{{ 'laboratoriesDetail.enterDetails' | translate }}"
+          rows="6"
+          class="custom-textarea"
+          required></textarea>
+      </div>
+      @if (observationForm.get('text')?.invalid && observationForm.get('text')?.touched) {
+        <span class="error-text">{{ 'laboratoriesDetail.detailsRequired' | translate }}</span>
+      }
+    </div>
+  </div>
+
+  <!-- Footer Actions -->
+  <div class="dialog-footer">
+    <button type="button" class="cancel-btn" (click)="onCancel()">{{ 'common.cancel' | translate }}</button>
+    <button
+      type="button"
+      class="submit-btn"
+      [disabled]="observationForm.invalid"
+      (click)="onSubmit()">
+      <mat-icon>save</mat-icon>
+      <span>{{ 'laboratoriesDetail.saveObservation' | translate }}</span>
+    </button>
+  </div>
+</div>

@@ -1,0 +1,164 @@
+<div class="drawer-container">
+  <!-- Header -->
+  <div class="drawer-header">
+    <div class="header-title">
+      <mat-icon class="title-icon">add_circle_outline</mat-icon>
+      <h2>{{ 'settingsPage.automationRules.createRule' | translate }}</h2>
+    </div>
+    <button mat-icon-button (click)="onCancel()" class="close-btn">
+      <mat-icon>close</mat-icon>
+    </button>
+  </div>
+
+  <!-- Scrollable Form Content -->
+  <div class="drawer-body">
+    <form [formGroup]="ruleForm" (ngSubmit)="onSubmit()" class="form-content">
+      
+      <!-- Section 1: TRIGGER CONDITION -->
+      <div class="form-section">
+        <h3 class="section-title">{{ 'settingsPage.automationRules.sections.triggerCondition' | translate }}</h3>
+        
+        <div class="field-group">
+          <label class="field-label">{{ 'settingsPage.automationRules.ruleName' | translate }}</label>
+          <mat-form-field appearance="outline" class="full-width">
+            <input matInput formControlName="name" placeholder="{{ 'settingsPage.automationRules.ruleNamePlaceholder' | translate }}">
+            <mat-error *ngIf="ruleForm.get('name')?.hasError('required')">
+              {{ 'settingsPage.automationRules.ruleNameRequired' | translate }}
+            </mat-error>
+          </mat-form-field>
+        </div>
+
+        <!-- Shaded trigger card as per mockup -->
+        <div class="trigger-card">
+          <!-- Row 1: When [Metric] [Operator] -->
+          <div class="trigger-row">
+            <span class="trigger-label">{{ 'settingsPage.automationRules.when' | translate }}</span>
+            <mat-form-field appearance="outline" class="metric-select-field">
+              <mat-select formControlName="triggerMetric">
+                <mat-option value="Temperature">{{ 'settingsPage.automationRules.metrics.temperature' | translate }}</mat-option>
+                <mat-option value="Humidity">{{ 'settingsPage.automationRules.metrics.humidity' | translate }}</mat-option>
+                <mat-option value="CO2">{{ 'settingsPage.automationRules.metrics.co2' | translate }}</mat-option>
+              </mat-select>
+            </mat-form-field>
+            <mat-form-field appearance="outline" class="operator-select-field">
+              <mat-select formControlName="triggerOperator">
+                <mat-option value=">">&gt;</mat-option>
+                <mat-option value="<">&lt;</mat-option>
+                <mat-option value=">=">&gt;=</mat-option>
+                <mat-option value="<=">&lt;=</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+
+          <!-- Row 2: [Value] Unit -->
+          <div class="trigger-row">
+            <mat-form-field appearance="outline" class="value-input-field">
+              <input matInput type="number" step="0.1" formControlName="triggerValue" [placeholder]="'settingsPage.automationRules.eg_80' | translate">
+            </mat-form-field>
+            <span class="unit-text">{{ unitSuffix }}</span>
+          </div>
+
+          <!-- Row 3: for more than [Duration] minutes -->
+          <div class="trigger-row">
+            <span class="inline-text">{{ 'settingsPage.automationRules.forMoreThan' | translate }}</span>
+            <mat-form-field appearance="outline" class="duration-input-field">
+              <input matInput type="number" formControlName="triggerDuration" min="0">
+            </mat-form-field>
+            <span class="inline-text">{{ 'settingsPage.automationRules.minutes' | translate }}</span>
+          </div>
+        </div>
+
+        <div class="field-group">
+          <label class="field-label">{{ 'settingsPage.automationRules.scope' | translate }}</label>
+          <mat-radio-group formControlName="scope" class="scope-radio-group">
+            <mat-radio-button value="all" color="primary">{{ 'settingsPage.automationRules.allLabs' | translate }}</mat-radio-button>
+            <mat-radio-button value="specific" color="primary">{{ 'settingsPage.automationRules.specificLab' | translate }}</mat-radio-button>
+          </mat-radio-group>
+        </div>
+
+        <!-- Conditional Lab Selection -->
+        <div class="field-group" *ngIf="ruleForm.get('scope')?.value === 'specific'">
+          <label class="field-label">{{ 'settingsPage.automationRules.selectLab' | translate }}</label>
+          <mat-form-field appearance="outline" class="full-width">
+            <mat-select formControlName="specificLabId">
+              <mat-option *ngFor="let lab of data.labs" [value]="lab.id">
+                {{ lab.name }}
+              </mat-option>
+            </mat-select>
+            <mat-error *ngIf="ruleForm.get('specificLabId')?.hasError('required')">
+              {{ 'settingsPage.automationRules.labRequired' | translate }}
+            </mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+
+      <!-- Section 2: AUTOMATED ACTIONS -->
+      <div class="form-section">
+        <h3 class="section-title">{{ 'settingsPage.automationRules.sections.automatedActions' | translate }}</h3>
+        
+        <div class="action-checkbox-list">
+          <div class="action-item">
+            <mat-checkbox formControlName="actionHvac" color="primary">
+              <div class="checkbox-label-content">
+                <span class="checkbox-title">{{ 'settingsPage.automationRules.actionHvac' | translate }}</span>
+                <span class="checkbox-subtext">{{ 'settingsPage.automationRules.actionHvacSub' | translate }}</span>
+              </div>
+            </mat-checkbox>
+          </div>
+
+          <div class="action-item">
+            <mat-checkbox formControlName="actionPush" color="primary">
+              <div class="checkbox-label-content">
+                <span class="checkbox-title">{{ 'settingsPage.automationRules.actionPush' | translate }}</span>
+                <span class="checkbox-subtext">{{ 'settingsPage.automationRules.actionPushSub' | translate }}</span>
+              </div>
+            </mat-checkbox>
+          </div>
+
+          <div class="action-item">
+            <mat-checkbox formControlName="actionSms" color="primary">
+              <div class="checkbox-label-content">
+                <span class="checkbox-title">{{ 'settingsPage.automationRules.actionSms' | translate }}</span>
+                <span class="checkbox-subtext">{{ 'settingsPage.automationRules.actionSmsSub' | translate }}</span>
+              </div>
+            </mat-checkbox>
+          </div>
+
+          <div class="action-item">
+            <mat-checkbox formControlName="actionLog" color="primary">
+              <div class="checkbox-label-content">
+                <span class="checkbox-title">{{ 'settingsPage.automationRules.actionLog' | translate }}</span>
+                <span class="checkbox-subtext">{{ 'settingsPage.automationRules.actionLogSub' | translate }}</span>
+              </div>
+            </mat-checkbox>
+          </div>
+        </div>
+      </div>
+
+      <!-- Section 3: EXECUTION LIMITS -->
+      <div class="form-section">
+        <h3 class="section-title">{{ 'settingsPage.automationRules.sections.executionLimits' | translate }}</h3>
+        
+        <div class="limit-row">
+          <span class="inline-text">{{ 'settingsPage.automationRules.doNotTriggerText' | translate }}</span>
+          <mat-form-field appearance="outline" class="limit-input-field">
+            <input matInput type="number" formControlName="executionLimitMins" min="1">
+          </mat-form-field>
+          <span class="inline-text">{{ 'settingsPage.automationRules.mins' | translate }}</span>
+        </div>
+
+        <div class="toggle-row">
+          <span class="toggle-label">{{ 'settingsPage.automationRules.autoResolve' | translate }}</span>
+          <mat-slide-toggle formControlName="autoResolve" color="primary"></mat-slide-toggle>
+        </div>
+      </div>
+
+    </form>
+  </div>
+
+  <!-- Footer Actions -->
+  <div class="drawer-footer">
+    <button mat-button (click)="onCancel()" class="btn-cancel">{{ 'common.cancel' | translate }}</button>
+    <button mat-flat-button color="primary" (click)="onSubmit()" [disabled]="!ruleForm.valid" class="btn-save">{{ 'settingsPage.automationRules.saveRule' | translate }}</button>
+  </div>
+</div>

@@ -1,0 +1,29 @@
+<div class="page-body">
+  @if (laboratoryStore.creationSuccess()) {
+  <app-lab-success-card [createdLab]="laboratoryStore.lastCreatedLab()" (goToLaboratories)="onGoToLaboratories()"
+    (createAnother)="onCreateAnother()" />
+  } @else {
+
+  <div class="page-top-bar">
+    <nav class="breadcrumb">
+      <a routerLink="/laboratories" class="breadcrumb-link">{{ 'laboratories.title' | translate }}</a>
+      <mat-icon class="breadcrumb-sep">chevron_right</mat-icon>
+      <span class="breadcrumb-current">{{ isEditMode ? ('routes.laboratories.edit.title' | translate) : ('routes.laboratories.add.title' | translate) }}</span>
+    </nav>
+    <div class="header-actions">
+      <button mat-stroked-button (click)="onCancel()">{{ 'common.cancel' | translate }}</button>
+      <button mat-flat-button (click)="onSubmit()" [disabled]="!isFormValid() || laboratoryStore.loading()">
+        <mat-icon>save</mat-icon>
+        {{ isEditMode ? ('laboratories.saveChanges' | translate) : ('laboratories.saveLaboratory' | translate) }}
+      </button>
+    </div>
+  </div>
+
+  <app-lab-general-info [(formData)]="formData" />
+
+  <app-lab-sensors-config [(metricSubscriptions)]="formData.metricSubscriptions" />
+
+  <app-lab-notifications-config [(notifications)]="formData.notifications" />
+
+  }
+</div>

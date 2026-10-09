@@ -1,0 +1,97 @@
+<div class="notifications-container animate-fade-in">
+  <div class="header-section">
+    <div class="header-icon-wrapper">
+      <mat-icon>notifications_active</mat-icon>
+    </div>
+    <div class="header-text">
+      <h2>{{ 'laboratories.detail.notifications.notification_channels_rules' | translate }}</h2>
+      <p>{{ 'laboratories.detail.notifications.configure_alert_dispatch_channels' | translate }} <strong>{{ lab().name }}</strong>.</p>
+    </div>
+  </div>
+
+  <div class="notifications-grid">
+    <!-- Channel Settings Card -->
+    <div class="pref-card">
+      <div class="card-title">
+        <mat-icon>chat_bubble_outline</mat-icon>
+        <h3>{{ 'laboratories.detail.notifications.active_channels' | translate }}</h3>
+      </div>
+      <p class="card-desc">{{ 'laboratories.detail.notifications.select_which_communication_channels' | translate }}</p>
+      
+      <div class="channels-list">
+        <div class="channel-item" [class.active]="email">
+          <div class="channel-info">
+            <mat-icon class="channel-icon">mail_outline</mat-icon>
+            <div class="channel-meta">
+              <span class="channel-name">{{ 'laboratories.detail.notifications.email_dispatch' | translate }}</span>
+              <span class="channel-sub">{{ 'laboratories.detail.notifications.send_full_reports_and' | translate }}</span>
+            </div>
+          </div>
+          <mat-checkbox [(ngModel)]="email" color="primary"></mat-checkbox>
+        </div>
+
+        <div class="channel-item" [class.active]="sms">
+          <div class="channel-info">
+            <mat-icon class="channel-icon">phone_android</mat-icon>
+            <div class="channel-meta">
+              <span class="channel-name">{{ 'laboratories.detail.notifications.sms_alert' | translate }}</span>
+              <span class="channel-sub">{{ 'laboratories.detail.notifications.critical_mobile_alerts_for' | translate }}</span>
+            </div>
+          </div>
+          <mat-checkbox [(ngModel)]="sms" color="primary"></mat-checkbox>
+        </div>
+
+        <div class="channel-item" [class.active]="push">
+          <div class="channel-info">
+            <mat-icon class="channel-icon">devices</mat-icon>
+            <div class="channel-meta">
+              <span class="channel-name">{{ 'laboratories.detail.notifications.push_notification' | translate }}</span>
+              <span class="channel-sub">{{ 'laboratories.detail.notifications.realtime_alerts_directly_to' | translate }}</span>
+            </div>
+          </div>
+          <mat-checkbox [(ngModel)]="push" color="primary"></mat-checkbox>
+        </div>
+      </div>
+    </div>
+
+    <!-- Alarm Rules Card -->
+    <div class="pref-card">
+      <div class="card-title">
+        <mat-icon>tune</mat-icon>
+        <h3>{{ 'laboratories.detail.notifications.alert_filtering' | translate }}</h3>
+      </div>
+      <p class="card-desc">{{ 'laboratories.detail.notifications.define_restrictions_for_alerts' | translate }}</p>
+
+      <div class="rules-box">
+        <div class="toggle-rule">
+          <div class="rule-info">
+            <span class="rule-name">{{ 'laboratoryForm.notifications.criticalOnly' | translate }}</span>
+            <span class="rule-sub">{{ 'laboratories.detail.notifications.mute_warnings_amber_state' | translate }}</span>
+          </div>
+          <mat-slide-toggle [(ngModel)]="criticalOnly" color="primary"></mat-slide-toggle>
+        </div>
+        
+        <div class="rule-warning-note">
+          <mat-icon>info_outline</mat-icon>
+          <p>
+            {{ 'laboratories.detail.notifications.when_critical_alerts_only' | translate }}
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="actions-panel">
+    <button mat-flat-button class="save-btn" [disabled]="isSaving" (click)="onSave()">
+      @if (isSaving) {
+        <span class="spinner-inline"></span>
+        {{ 'common.saving' | translate }}
+      } @else {
+        <ng-container>
+          <mat-icon>save</mat-icon>
+          <span>{{ 'laboratories.detail.notifications.save_preferences' | translate }}</span>
+        </ng-container>
+      }
+    </button>
+  </div>
+</div>

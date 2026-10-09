@@ -1,0 +1,159 @@
+<div class="side-sheet-container">
+  <!-- Header -->
+  <div class="dialog-header">
+    <h2 class="dialog-title">{{ isEditMode ? ('settingsPage.sensorDialog.editTitle' | translate) : ('settingsPage.sensorDialog.addTitle' | translate) }}</h2>
+    <button type="button" class="close-btn" (click)="onCancel()" [attr.aria-label]="'common.closeDialog' | translate">
+      <mat-icon>close</mat-icon>
+    </button>
+  </div>
+
+  <!-- Form Body -->
+  @if (laboratoryStore.loading() || automationStore.loading()) {
+    <div class="dialog-loading">
+      <mat-spinner diameter="32" />
+      <p>{{ 'layout.loading' | translate }}</p>
+    </div>
+  } @else {
+    <div class="dialog-content-scroll" [formGroup]="sensorForm">
+      <!-- Sensor Name -->
+      <div class="form-group">
+        <label class="form-label">{{ 'settingsPage.sensorDialog.nameLabel' | translate }}</label>
+        <div class="input-with-icon" [class.error]="sensorForm.get('sensorName')?.invalid && sensorForm.get('sensorName')?.touched">
+          <mat-icon class="input-icon">sensors</mat-icon>
+          <input
+            type="text"
+            formControlName="sensorName"
+            placeholder="{{ 'settingsPage.sensorDialog.namePlaceholder' | translate }}"
+            class="custom-input"
+            required>
+        </div>
+        @if (sensorForm.get('sensorName')?.invalid && sensorForm.get('sensorName')?.touched) {
+          <span class="error-text">{{ 'settingsPage.sensorDialog.nameRequired' | translate }}</span>
+        }
+      </div>
+
+      <!-- Sensor Type -->
+      <div class="form-group">
+        <label class="form-label">{{ 'settingsPage.sensorDialog.typeLabel' | translate }}</label>
+        <div class="input-with-icon" [class.error]="sensorForm.get('type')?.invalid && sensorForm.get('type')?.touched">
+          <mat-icon class="input-icon">category</mat-icon>
+          <input
+            type="text"
+            formControlName="type"
+            placeholder="{{ 'settingsPage.sensorDialog.typePlaceholder' | translate }}"
+            class="custom-input"
+            required>
+        </div>
+        @if (sensorForm.get('type')?.invalid && sensorForm.get('type')?.touched) {
+          <span class="error-text">{{ 'settingsPage.sensorDialog.typeRequired' | translate }}</span>
+        }
+      </div>
+
+      <!-- Serial Number / MAC Address -->
+      <div class="form-group">
+        <label class="form-label">{{ 'settingsPage.sensorDialog.serialLabel' | translate }}</label>
+        <div class="input-with-icon" [class.error]="sensorForm.get('unit')?.invalid && sensorForm.get('unit')?.touched">
+          <mat-icon class="input-icon">tag</mat-icon>
+          <input
+            type="text"
+            formControlName="unit"
+            placeholder="{{ 'settingsPage.sensorDialog.serialPlaceholder' | translate }}"
+            class="custom-input"
+            required>
+        </div>
+        @if (sensorForm.get('unit')?.invalid && sensorForm.get('unit')?.touched) {
+          <span class="error-text">{{ 'settingsPage.sensorDialog.serialRequired' | translate }}</span>
+        }
+      </div>
+
+      <!-- Laboratory -->
+      <div class="form-group">
+        <label class="form-label">{{ 'settingsPage.sensorDialog.labLabel' | translate }}</label>
+        <mat-form-field appearance="outline" class="dense-field w-full">
+          <mat-select formControlName="laboratoryId" placeholder="{{ 'settingsPage.sensorDialog.selectLab' | translate }}">
+            @for (lab of laboratoryStore.laboratories(); track lab.id) {
+              <mat-option [value]="lab.id">{{ lab.name }}</mat-option>
+            }
+          </mat-select>
+        </mat-form-field>
+        @if (sensorForm.get('laboratoryId')?.invalid && sensorForm.get('laboratoryId')?.touched) {
+          <span class="error-text" style="margin-top: -8px; display: block;">{{ 'settingsPage.sensorDialog.labRequired' | translate }}</span>
+        }
+      </div>
+
+      <!-- Target Location Type -->
+      <div class="form-group">
+        <label class="form-label">{{ 'settingsPage.sensorDialog.locationType' | translate }}</label>
+        <mat-form-field appearance="outline" class="dense-field w-full">
+          <mat-select formControlName="targetType">
+            <mat-option value="ambient">{{ 'settingsPage.sensorDialog.ambient' | translate }}</mat-option>
+            <mat-option value="equipment">{{ 'settingsPage.sensorDialog.equipment' | translate }}</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+
+      <!-- Equipment (Conditional) -->
+      @if (sensorForm.get('targetType')?.value === 'equipment') {
+        <div class="form-group">
+          <label class="form-label">{{ 'settingsPage.sensorDialog.equipmentLabel' | translate }}</label>
+          <mat-form-field appearance="outline" class="dense-field w-full">
+            <mat-select formControlName="equipmentId" placeholder="{{ 'settingsPage.sensorDialog.selectEquipment' | translate }}">
+              @for (eq of getFilteredEquipment(); track eq.id) {
+                <mat-option [value]="eq.id">{{ eq.name }}</mat-option>
+              }
+            </mat-select>
+          </mat-form-field>
+          @if (sensorForm.get('equipmentId')?.invalid && sensorForm.get('equipmentId')?.touched) {
+            <span class="error-text" style="margin-top: -8px; display: block;">{{ 'settingsPage.sensorDialog.equipmentRequired' | translate }}</span>
+          }
+        </div>
+      }
+
+      <!-- Custom Threshold Limits -->
+      @if (sensorForm.get('targetType')?.value === 'ambient') {
+        <div class="thresholds-row">
+          <div class="form-group flex-1">
+            <label class="form-label">{{ 'settingsPage.sensorDialog.minLabel' | translate }}</label>
+            <input type="number" formControlName="minThreshold" placeholder="- - -" class="custom-input">
+          </div>
+          <div class="form-group flex-1">
+            <label class="form-label">{{ 'settingsPage.sensorDialog.maxLabel' | translate }}</label>
+            <input type="number" formControlName="maxThreshold" placeholder="- - -" class="custom-input">
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="form-label">{{ 'settingsPage.sensorDialog.warningLabel' | translate }}</label>
+          <input type="number" formControlName="warningThreshold" placeholder="- - -" class="custom-input">
+        </div>
+      }
+
+      <!-- Active Status -->
+      <div class="form-group toggle-group">
+        <mat-slide-toggle formControlName="isActive" color="primary">
+          {{ 'settingsPage.sensorDialog.sensorActive' | translate }}
+        </mat-slide-toggle>
+      </div>
+
+      <!-- Note -->
+      @if (!isEditMode) {
+        <div class="form-note">
+          <mat-icon class="info-icon">info</mat-icon>
+          <p class="note-text">{{ 'settingsPage.sensorDialog.hardwareNote' | translate }}</p>
+        </div>
+      }
+    </div>
+  }
+
+  <!-- Footer Actions -->
+  <div class="dialog-footer">
+    <button type="button" class="cancel-btn" (click)="onCancel()">{{ 'common.cancel' | translate }}</button>
+    <button
+      type="button"
+      class="submit-btn"
+      [disabled]="sensorForm.invalid || laboratoryStore.loading() || automationStore.loading()"
+      (click)="onSubmit()">
+      <mat-icon>save</mat-icon>
+      <span>{{ 'settingsPage.sensorDialog.saveSensor' | translate }}</span>
+    </button>
+  </div>
+</div>

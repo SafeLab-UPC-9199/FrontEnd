@@ -1,0 +1,117 @@
+.activity-card {
+  background: var(--mat-sys-surface);
+  border: 1px solid var(--mat-sys-outline-variant);
+  border-radius: 12px;
+  padding: 18px 20px;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  box-sizing: border-box;
+}
+
+.section-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 16px;
+}
+
+.section-title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: var(--mat-sys-title-medium-size, 16px);
+  font-weight: 600;
+  color: var(--mat-sys-on-surface);
+  margin: 0;
+}
+
+.section-icon {
+  font-size: 20px;
+  width: 20px;
+  height: 20px;
+  color: var(--mat-sys-on-surface-variant);
+}
+
+.section-link {
+  font-size: var(--mat-sys-label-medium-size);
+  color: var(--mat-sys-primary);
+  font-weight: 600;
+  text-decoration: none;
+  transition: opacity .2s;
+}
+
+.section-link:hover {
+  opacity: 0.75;
+}
+
+.logs-list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  flex: 1;
+}
+
+.log-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+}
+
+.log-avatar {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: var(--mat-sys-primary-container);
+  color: var(--mat-sys-on-primary-container);
+  font-size: 13px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.log-content {
+  flex: 1;
+  min-width: 0;
+}
+
+.log-header-row {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 6px;
+  margin-bottom: 3px;
+}
+
+.log-author {
+  font-size: var(--mat-sys-body-medium-size);
+  font-weight: 600;
+  color: var(--mat-sys-on-surface);
+}
+
+.log-time {
+  font-size: 11px;
+  color: var(--mat-sys-on-surface-variant);
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.log-desc {
+  font-size: var(--mat-sys-label-medium-size);
+  color: var(--mat-sys-on-surface-variant);
+  margin: 0;
+  line-height: 1.5;
+}
+
+.empty-logs {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  color: var(--mat-sys-on-surface-variant);
+  font-size: var(--mat-sys-body-medium-size);
+  text-align: center;
+  flex: 1;
+}

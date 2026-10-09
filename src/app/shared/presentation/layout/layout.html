@@ -1,0 +1,39 @@
+<mat-sidenav-container class="app-container">
+
+  <!-- Overlay for mobile when sidebar is open -->
+  @if (isMobile && sidenavOpened) {
+    <div class="sidebar-overlay" (click)="closeSidenav()"></div>
+  }
+
+  <!-- SIDEBAR -->
+  <mat-sidenav
+    #sidenav
+    [mode]="isMobile ? 'over' : 'side'"
+    [opened]="sidenavOpened"
+    class="app-sidenav"
+    (closedStart)="onSidenavClosed()">
+    <app-sidebar></app-sidebar>
+  </mat-sidenav>
+
+  <!-- CONTENIDO -->
+  <mat-sidenav-content [class.with-secondary-sidebar]="hasSecondarySidebar">
+    <app-topbar [showHamburger]="isMobile" (hamburgerClick)="toggleSidenav()"></app-topbar>
+
+    @if (systemStatus() === 'DISCONNECTED') {
+      <div class="global-status-banner warning-banner">
+        <mat-icon class="banner-icon">warning</mat-icon>
+        <span class="banner-text">{{ 'layout.errors.mqttDisconnected' | translate }}</span>
+      </div>
+    } @else if (systemStatus() === 'SERVER_ERROR') {
+      <div class="global-status-banner error-banner">
+        <mat-icon class="banner-icon">error</mat-icon>
+        <span class="banner-text">{{ 'layout.errors.serverDisconnected' | translate }}</span>
+      </div>
+    }
+
+    <main class="content">
+      <router-outlet></router-outlet>
+    </main>
+  </mat-sidenav-content>
+
+</mat-sidenav-container>

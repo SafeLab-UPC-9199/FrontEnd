@@ -1,0 +1,94 @@
+<div class="login-shell">
+  <!-- Main Content -->
+  <main class="login-main">
+    <div class="login-card" id="login-card">
+      <!-- Logo & Branding -->
+      <div class="card-header">
+        <div class="card-logo" (dblclick)="onClearTestUsers()" style="cursor: pointer;" [title]="'iam.login.clearTestUsers' | translate">
+          <mat-icon>science</mat-icon>
+        </div>
+        <h1 class="card-brand">{{ 'sidebar.logo.name' | translate }}</h1>
+        <span class="card-subtitle">{{ 'iam.byEspecialistas' | translate }}</span>
+      </div>
+
+      <!-- Welcome Text -->
+      <h2 class="welcome-title">{{ 'iam.login.welcome' | translate }}</h2>
+      <p class="welcome-text">{{ 'iam.login.subtitle' | translate }}</p>
+
+      <!-- Error Message -->
+      @if (authStore.error()) {
+        <div class="login-error-message" style="color: #ef4444; background-color: #fef2f2; border: 1px solid #fee2e2; padding: 12px; border-radius: 8px; margin-bottom: 20px; font-size: 14px; text-align: center; display: flex; align-items: center; justify-content: center; gap: 8px;">
+          <mat-icon style="font-size: 18px; width: 18px; height: 18px; color: #ef4444;">error_outline</mat-icon>
+          <span>{{ authStore.error() }}</span>
+        </div>
+      }
+
+      <!-- Success Message -->
+      @if (successMessage) {
+        <div class="login-success-message" style="color: #10b981; background-color: #ecfdf5; border: 1px solid #d1fae5; padding: 12px; border-radius: 8px; margin-bottom: 20px; font-size: 14px; text-align: center; display: flex; align-items: center; justify-content: center; gap: 8px;">
+          <mat-icon style="font-size: 18px; width: 18px; height: 18px; color: #10b981;">check_circle_outline</mat-icon>
+          <span>{{ successMessage }}</span>
+        </div>
+      }
+
+      <!-- Form -->
+      <form class="login-form" id="login-form" (ngSubmit)="onSignIn()">
+        <!-- Email -->
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>{{ 'iam.login.emailLabel' | translate }}</mat-label>
+          <mat-icon matPrefix>mail_outline</mat-icon>
+          <input matInput type="email" [placeholder]="'iam.login.emailPlaceholder' | translate"
+                 [(ngModel)]="email" name="email" autocomplete="email" id="login-email"
+                 [disabled]="authStore.loading()" required />
+        </mat-form-field>
+
+        <!-- Password -->
+        <div class="password-label-row">
+          <span></span>
+          <a href="#" class="link-accent forgot-link">{{ 'iam.login.forgotPassword' | translate }}</a>
+        </div>
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>{{ 'iam.login.passwordLabel' | translate }}</mat-label>
+          <mat-icon matPrefix>lock_outline</mat-icon>
+          <input matInput [type]="showPassword ? 'text' : 'password'"
+                 placeholder="••••••••••" [(ngModel)]="password" name="password"
+                 autocomplete="current-password" id="login-password"
+                 [disabled]="authStore.loading()" required />
+          <button mat-icon-button matSuffix type="button"
+                  (click)="togglePasswordVisibility()" id="toggle-password"
+                  [disabled]="authStore.loading()">
+            <mat-icon>{{ showPassword ? 'visibility_off' : 'visibility' }}</mat-icon>
+          </button>
+        </mat-form-field>
+
+        <!-- Remember Me -->
+        <mat-checkbox [(ngModel)]="rememberMe" name="rememberMe" color="primary"
+                       id="remember-me-checkbox" [disabled]="authStore.loading()">
+          {{ 'iam.login.rememberMe' | translate }}
+        </mat-checkbox>
+
+        <!-- Sign In -->
+        <button mat-flat-button color="primary" type="submit" class="sign-in-btn" id="sign-in-btn"
+                [disabled]="authStore.loading() || !email || !password">
+          @if (!authStore.loading()) {
+            <mat-icon>login</mat-icon>
+          }
+          {{ authStore.loading() ? ('iam.login.signingIn' | translate) : ('iam.login.signIn' | translate) }}
+        </button>
+      </form>
+
+      <!-- Register Link -->
+      <div style="text-align: center; margin-top: 16px; font-size: 14px; color: var(--text-secondary);">
+        {{ 'iam.login.haveInvitation' | translate }} <a routerLink="/register" class="link-accent">{{ 'iam.login.registerHere' | translate }}</a>
+      </div>
+
+      <!-- Footer -->
+      <footer class="login-footer" id="login-footer">
+        {{ 'iam.login.termsPrefix' | translate }}
+        <a href="#" class="link-accent">{{ 'iam.login.terms' | translate }}</a>
+        {{ 'iam.login.and' | translate }}
+        <a href="#" class="link-accent">{{ 'iam.login.privacy' | translate }}</a>
+      </footer>
+    </div>
+  </main>
+</div>

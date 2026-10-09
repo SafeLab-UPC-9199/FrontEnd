@@ -1,0 +1,29 @@
+@if (totalPages() > 1) {
+<div class="pagination">
+  <span class="pagination-info">
+    {{ 'laboratories.pagination.showing' | translate }} <strong>{{ showingFrom() }}</strong> {{ 'laboratories.pagination.to' | translate }}
+    <strong>{{ showingTo() }}</strong> {{ 'laboratories.pagination.of' | translate }}
+    <strong>{{ totalCount() }}</strong> {{ 'laboratories.pagination.labs' | translate }}
+  </span>
+
+  <div class="pagination-controls">
+    <button mat-stroked-button [disabled]="currentPage() === 1" (click)="prevPage.emit()">
+      {{ 'laboratories.pagination.prev' | translate }}
+    </button>
+
+    @for (p of pages(); track $index) {
+    @if (p === '...') {
+    <span class="page-ellipsis">…</span>
+    } @else {
+    <button mat-stroked-button [class.active]="currentPage() === p" (click)="pageClick.emit(p)">
+      {{ p }}
+    </button>
+    }
+    }
+
+    <button mat-stroked-button [disabled]="currentPage() === totalPages()" (click)="nextPage.emit()">
+      {{ 'laboratories.pagination.next' | translate }}
+    </button>
+  </div>
+</div>
+}

@@ -1,0 +1,28 @@
+<div class="activity-card">
+  <div class="section-header">
+    <h3 class="section-title">
+      <mat-icon class="section-icon">history</mat-icon>
+      {{ 'laboratoriesDetail.recentLogs' | translate }}
+    </h3>
+    <a class="section-link" routerLink="/history">{{ 'laboratoriesDetail.viewFullLog' | translate }}</a>
+  </div>
+
+  <div class="logs-list">
+    @for (activity of activities().slice(0, 3); track activity.id) {
+    <div class="log-item">
+      <div class="log-avatar">{{ activity.title.charAt(0).toUpperCase() }}</div>
+      <div class="log-content">
+        <div class="log-header-row">
+          <span class="log-author">{{ activity.title }}</span>
+          <span class="log-time">{{ activity.timestamp }}</span>
+        </div>
+        <p class="log-desc">{{ activity.description }}</p>
+      </div>
+    </div>
+    } @empty {
+    <div class="empty-logs">
+      <p>{{ 'laboratoriesDetail.noLogs' | translate }}</p>
+    </div>
+    }
+  </div>
+</div>

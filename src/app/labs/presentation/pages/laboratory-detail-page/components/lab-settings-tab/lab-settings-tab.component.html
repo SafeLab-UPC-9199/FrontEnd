@@ -1,0 +1,31 @@
+<div class="settings-container animate-fade-in">
+  <div class="header-section">
+    <div class="header-icon-wrapper">
+      <mat-icon>settings</mat-icon>
+    </div>
+    <div class="header-text">
+      <h2>{{ 'laboratoriesDetail.tabSettings.title' | translate }}</h2>
+      <p>{{ 'laboratoriesDetail.tabSettings.subtitle' | translate }}</p>
+    </div>
+  </div>
+
+  <!-- Danger Zone -->
+  <div class="danger-zone-card animate-fade-in">
+    <div class="danger-header">
+      <mat-icon class="danger-icon">warning</mat-icon>
+      <div class="danger-title">
+        <h3>{{ 'laboratoriesDetail.tabSettings.dangerZone.title' | translate }}</h3>
+        <p>{{ 'laboratoriesDetail.tabSettings.dangerZone.subtitle' | translate }}</p>
+      </div>
+    </div>
+    <div class="danger-content">
+      <p class="danger-description">
+        {{ 'laboratoriesDetail.tabSettings.dangerZone.description' | translate }}
+      </p>
+      <button type="button" mat-flat-button class="delete-lab-btn" [disabled]="isSaving" (click)="onDelete()">
+        <mat-icon>delete_forever</mat-icon>
+        <span>{{ 'laboratoriesDetail.tabSettings.dangerZone.deleteButton' | translate }}</span>
+      </button>
+    </div>
+  </div>
+</div>

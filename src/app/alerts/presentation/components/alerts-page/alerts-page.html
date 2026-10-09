@@ -1,0 +1,113 @@
+<div class="alerts-container">
+
+  <div class="header-section" style="justify-content: flex-end;">
+    <div class="header-time">
+      <mat-icon>schedule</mat-icon>
+      {{ currentTime | date:'fullDate' }} <strong>{{ currentTime | date:'shortTime' }}</strong>
+    </div>
+  </div>
+
+  <section class="summary-cards">
+    @for (card of summaryCards(); track card.title) {
+      <div class="summary-card {{card.class}}">
+        <div class="card-value">{{ card.value }}</div>
+        <div class="card-text">
+          <span class="card-title">{{ card.title | translate }}</span>
+          <span class="card-subtitle">{{ card.subtitle | translate }}</span>
+        </div>
+      </div>
+    }
+  </section>
+
+  <section class="filters-bar">
+    <div class="filters-left">
+      <div class="search-box">
+        <mat-icon>search</mat-icon>
+        <input type="text" [placeholder]="'alerts.searchPlaceholder' | translate"
+               [value]="searchQuery()"
+               (input)="searchQuery.set(($any($event.target).value || '').trim())">
+      </div>
+
+      <div class="dropdown-wrapper">
+        <select class="dropdown" [value]="selectedSeverity()" (change)="selectedSeverity.set($any($event.target).value)">
+          <option value="All">{{ 'alerts.filters.severity' | translate }}: {{ 'laboratories.status.all' | translate }}</option>
+          <option value="CRITICAL">{{ 'dashboard.severity.critical' | translate }}</option>
+          <option value="WARNING">{{ 'dashboard.severity.warning' | translate }}</option>
+          <option value="INFO">{{ 'alerts.summary.informational' | translate }}</option>
+        </select>
+      </div>
+
+      <div class="dropdown-wrapper">
+        <select class="dropdown" [value]="selectedLab()" (change)="selectedLab.set($any($event.target).value)">
+          <option value="All">{{ 'alerts.filters.laboratory' | translate }}: {{ 'laboratories.status.all' | translate }}</option>
+          @for (labName of uniqueLabs(); track labName) {
+            @if (labName !== 'All') {
+              <option [value]="labName">{{ labName }}</option>
+            }
+          }
+        </select>
+      </div>
+
+      <div class="dropdown-wrapper">
+        <select class="dropdown" [value]="selectedStatus()" (change)="selectedStatus.set($any($event.target).value)">
+          <option value="All">{{ 'alerts.filters.status' | translate }}: {{ 'laboratories.status.all' | translate }}</option>
+          <option value="ACTIVE">{{ 'common.status.active' | translate }}</option>
+          <option value="RESOLVED">{{ 'common.status.resolved' | translate }}</option>
+        </select>
+      </div>
+    </div>
+    <div class="filters-right">
+      <span class="total-text">{{ 'alerts.total' | translate:{count: filteredAlerts().length} }}</span>
+    </div>
+  </section>
+
+  <section class="alerts-list">
+    @for (group of alertGroups(); track group.severity) {
+
+      <div class="alert-group-header">
+        <span class="group-dot" [ngClass]="group.colorClass">●</span>
+        <span class="group-title" [ngClass]="group.colorClass">{{ ('alerts.summary.' + group.severity) | translate }}</span>
+        <span class="group-count">{{ group.count }}</span>
+      </div>
+
+      @for (alert of group.items; track alert.id) {
+        <div class="alert-card">
+          <div class="alert-indicator" [ngClass]="group.pillClass"></div>
+
+          <div class="alert-content-wrapper">
+            <div class="alert-left-content">
+              <div class="alert-pill" [ngClass]="group.pillClass">{{ ('alerts.summary.' + group.severity) | translate }}</div>
+
+              <div class="alert-details">
+                <h3 class="alert-title">{{ alert.title }}</h3>
+                <div class="alert-meta">
+                  <span class="meta-item"><mat-icon>location_on</mat-icon> {{ alert.location }}</span>
+                  <span class="meta-item"><mat-icon>schedule</mat-icon> {{ alert.timeAgo }}</span>
+                  @if (alert.sensor) {
+                    <span class="meta-item-divider">·</span>
+                    <span class="meta-item">{{ alert.sensor }}</span>
+                  }
+                </div>
+                <p class="alert-description">{{ alert.description }}</p>
+              </div>
+            </div>
+
+            <div class="alert-actions">
+              <div class="duration-pill">{{ alert.duration }}</div>
+
+              @if (group.severity === 'RESOLVED TODAY') {
+                <span class="resolved-by">{{ alert.resolvedBy }}</span>
+              } @else {
+                <button class="btn-investigate" (click)="navigateToIncident(alert.id)">
+                  {{ 'alerts.button.investigate' | translate }} <mat-icon>arrow_forward</mat-icon>
+                </button>
+              }
+            </div>
+          </div>
+        </div>
+      }
+    }
+  </section>
+
+</div>
+

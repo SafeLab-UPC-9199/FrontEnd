@@ -1,0 +1,162 @@
+<div class="profile-container">
+  @if (automationStore.loading()) {
+    <div class="loading-overlay">
+      <div class="spinner"></div>
+      <span>{{ 'settingsPage.profileIdentity.updating' | translate }}</span>
+    </div>
+  }
+
+  <div class="profile-grid">
+    <!-- Left Column: Personal Information -->
+    <div class="main-column">
+      <mat-card class="profile-card">
+        <mat-card-header class="card-header">
+          <mat-icon class="header-icon header-blue">badge</mat-icon>
+          <mat-card-title>{{ 'settingsPage.profileIdentity.personalInfo' | translate }}</mat-card-title>
+        </mat-card-header>
+
+        <mat-card-content class="card-content">
+          <form [formGroup]="profileForm" (ngSubmit)="onSaveChanges()">
+            <div class="form-row">
+              <mat-form-field appearance="outline" class="form-field">
+                <mat-label>{{ 'settingsPage.profileIdentity.fullName' | translate }}</mat-label>
+                <input matInput formControlName="fullName" [placeholder]="'settingsPage.profileIdentity.fullNamePlaceholder' | translate">
+                @if (profileForm.get('fullName')?.hasError('required')) {
+                  <mat-error>{{ 'settingsPage.profileIdentity.fullNameRequired' | translate }}</mat-error>
+                }
+              </mat-form-field>
+
+              <mat-form-field appearance="outline" class="form-field">
+                <mat-label>{{ 'settingsPage.profileIdentity.email' | translate }}</mat-label>
+                <input matInput formControlName="email" type="email" [placeholder]="'settingsPage.profileIdentity.emailPlaceholder' | translate">
+                @if (profileForm.get('email')?.hasError('required')) {
+                  <mat-error>{{ 'settingsPage.usersPermissions.emailRequired' | translate }}</mat-error>
+                }
+                @if (profileForm.get('email')?.hasError('email')) {
+                  <mat-error>{{ 'settingsPage.usersPermissions.emailValid' | translate }}</mat-error>
+                }
+              </mat-form-field>
+            </div>
+
+            <div class="form-row">
+              <mat-form-field appearance="outline" class="form-field">
+                <mat-label>{{ 'settingsPage.profileIdentity.phone' | translate }}</mat-label>
+                <input matInput formControlName="phoneNumber" placeholder="+1 (555) 019-2834">
+                @if (profileForm.get('phoneNumber')?.hasError('required')) {
+                  <mat-error>{{ 'settingsPage.profileIdentity.phoneRequired' | translate }}</mat-error>
+                }
+              </mat-form-field>
+
+              <mat-form-field appearance="outline" class="form-field readonly-field">
+                <mat-label>{{ 'settingsPage.profileIdentity.title' | translate }}</mat-label>
+                <input matInput formControlName="professionalTitle" readonly>
+                <mat-icon matSuffix class="lock-icon">lock</mat-icon>
+              </mat-form-field>
+            </div>
+
+            <div class="form-row">
+              <mat-form-field appearance="outline" class="form-field readonly-field full-width">
+                <mat-label>{{ 'settingsPage.profileIdentity.employeeId' | translate }}</mat-label>
+                <input matInput formControlName="employeeId" readonly>
+                <mat-icon matSuffix class="lock-icon">lock</mat-icon>
+              </mat-form-field>
+            </div>
+
+            <div class="form-actions">
+              <button mat-raised-button color="primary" type="submit" [disabled]="profileForm.invalid || automationStore.loading()" class="btn-save">
+                <mat-icon>save</mat-icon>
+                Save Changes
+              </button>
+            </div>
+          </form>
+        </mat-card-content>
+      </mat-card>
+    </div>
+
+    <!-- Right Column: Avatar, Status, Preferences -->
+    <div class="side-column">
+      <!-- Profile Photo -->
+      <mat-card class="profile-card photo-card">
+        <mat-card-content class="photo-container">
+          <div class="avatar-large">
+            <span class="avatar-text">{{ userInitials() }}</span>
+          </div>
+          <div class="photo-actions">
+            <button mat-button class="btn-link">{{ 'settingsPage.profileIdentity.changePhoto' | translate }}</button>
+            <span class="divider">|</span>
+            <button mat-button class="btn-link text-danger">{{ 'incident.resolve.remove' | translate }}</button>
+          </div>
+        </mat-card-content>
+      </mat-card>
+
+      <!-- Account Status -->
+      <mat-card class="profile-card">
+        <mat-card-header class="card-header">
+          <mat-icon class="header-icon header-status">shield</mat-icon>
+          <mat-card-title>{{ 'settingsPage.securityAccess.accountStatus' | translate }}</mat-card-title>
+        </mat-card-header>
+
+        <mat-card-content class="card-content">
+          <div class="status-item">
+            <span class="status-label">{{ 'settingsPage.profileIdentity.systemState' | translate }}</span>
+            <div class="badge success-badge">
+              <span class="dot"></span>
+              {{ 'settingsPage.profileIdentity.activeVerified' | translate }}
+            </div>
+          </div>
+
+          <div class="status-item">
+            <span class="status-label">{{ 'settingsPage.profileIdentity.accessTier' | translate }}</span>
+            <span class="status-value font-semibold">{{ 'settingsPage.profileIdentity.labCoordinator' | translate }}</span>
+          </div>
+
+          <div class="status-footer">
+            <a href="javascript:void(0)" class="action-link">
+              {{ 'settingsPage.profileIdentity.requestRoleChange' | translate }} <mat-icon class="link-icon">arrow_forward</mat-icon>
+            </a>
+          </div>
+        </mat-card-content>
+      </mat-card>
+
+      <!-- Shift Preferences -->
+      <mat-card class="profile-card">
+        <mat-card-header class="card-header">
+          <mat-icon class="header-icon header-pref">schedule</mat-icon>
+          <mat-card-title>{{ 'settingsPage.profileIdentity.shiftPreferences' | translate }}</mat-card-title>
+        </mat-card-header>
+
+        <mat-card-content class="card-content" [formGroup]="profileForm">
+          <div class="preference-row">
+            <mat-form-field appearance="outline" class="full-width">
+              <mat-label>{{ 'settingsPage.profileIdentity.defaultStart' | translate }}</mat-label>
+              <mat-select formControlName="defaultStartShift">
+                @for (time of startTimes; track time) {
+                  <mat-option [value]="time">{{ time }}</mat-option>
+                }
+              </mat-select>
+            </mat-form-field>
+          </div>
+
+          <div class="preference-row">
+            <mat-form-field appearance="outline" class="full-width">
+              <mat-label>{{ 'settingsPage.profileIdentity.duration' | translate }}</mat-label>
+              <mat-select formControlName="shiftDuration">
+                @for (dur of durations; track dur) {
+                  <mat-option [value]="dur">{{ dur }}</mat-option>
+                }
+              </mat-select>
+            </mat-form-field>
+          </div>
+
+          <div class="toggle-row">
+            <div class="toggle-text">
+              <span class="toggle-title">{{ 'settingsPage.profileIdentity.autoGenerateReport' | translate }}</span>
+              <span class="toggle-subtitle">{{ 'settingsPage.profileIdentity.compileData' | translate }}</span>
+            </div>
+            <mat-slide-toggle formControlName="autoGenerateShiftReport" color="primary"></mat-slide-toggle>
+          </div>
+        </mat-card-content>
+      </mat-card>
+    </div>
+  </div>
+</div>

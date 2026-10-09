@@ -1,0 +1,71 @@
+<div class="settings-page">
+
+  <!-- Top Row: General Settings + User Profile -->
+  <section class="top-row">
+
+    <!-- General Settings Card (wide) -->
+    <mat-card appearance="outlined" class="general-card">
+      <mat-card-content class="general-content">
+
+        <div class="general-header">
+          <div class="general-icon">
+            <mat-icon>settings</mat-icon>
+          </div>
+          <h3 class="general-title">{{ 'settings.general.title' | translate }}</h3>
+          <mat-chip-set class="system-badge">
+            <mat-chip color="primary" selected>{{ 'settings.general.badge' | translate }}</mat-chip>
+          </mat-chip-set>
+        </div>
+
+        <p class="general-description">
+          {{ 'settings.general.description' | translate }}
+        </p>
+
+        <div class="general-action">
+          <button mat-raised-button color="primary">{{ 'settings.general.button' | translate }}</button>
+        </div>
+
+      </mat-card-content>
+    </mat-card>
+
+    <!-- User Profile Card -->
+    <app-user-profile-card
+      [profile]="displayProfile()"
+      (editProfile)="null"
+    />
+
+  </section>
+
+  <!-- Bottom Row: 3 settings cards -->
+  <section class="bottom-row">
+
+    <app-settings-card
+      icon="sensors"
+      title="{{ 'settings.sensor.title' | translate }}"
+      description="{{ 'settings.sensor.description' | translate }}"
+      buttonLabel="{{ 'settings.sensor.button' | translate }}"
+      buttonStyle="filled"
+      (actionClick)="navigateToSensorConfig()"
+    />
+
+    <app-settings-card
+      icon="notifications"
+      title="{{ 'settings.alerts.title' | translate }}"
+      description="{{ 'settings.alerts.description' | translate }}"
+      buttonLabel="{{ 'settings.alerts.button' | translate }}"
+      buttonStyle="outlined"
+      (actionClick)="navigateToAlertsNotifications()"
+    />
+
+    <app-settings-card
+      icon="lock"
+      title="{{ 'settings.security.title' | translate }}"
+      description="{{ 'settings.security.description' | translate }}"
+      buttonLabel="{{ 'settings.security.button' | translate }}"
+      buttonStyle="outlined"
+      (actionClick)="navigateToSecurityAccess()"
+    />
+
+  </section>
+
+</div>

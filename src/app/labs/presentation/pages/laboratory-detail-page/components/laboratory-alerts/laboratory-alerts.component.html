@@ -1,0 +1,29 @@
+<app-card>
+  <div class="section-header">
+    <h3 class="section-title">{{ 'laboratories.detail.alerts.recent_alerts' | translate }}</h3>
+    <a class="section-link" routerLink="/alerts">{{ 'dashboard.panel.viewAll' | translate }}</a>
+  </div>
+  <div class="alerts-list">
+    @for (alert of alerts(); track alert.id) {
+    <div class="alert-row">
+      <app-card class="alert-card-wrap" [borderColor]="getAlertBorderColor(alert.severity)"
+        [bgColor]="getAlertBgColor(alert.severity)" padding="compact">
+        <div class="alert-grid">
+          <span class="alert-dot" [class.critical]="isCritical(alert.severity)"
+            [class.warning]="isWarning(alert.severity)" [class.resolved]="isResolved(alert.severity)"></span>
+          <div class="alert-content">
+            <div class="alert-meta">
+              <app-status-badge [severity]="alert.severity" [showDot]="false" [strong]="true" />
+              <span class="alert-time">{{ alert.timeAgo }}</span>
+            </div>
+            <p class="alert-lab">{{ alert.title }}</p>
+            <p class="alert-desc">{{ alert.source }}</p>
+          </div>
+        </div>
+      </app-card>
+    </div>
+    } @empty {
+    <p class="no-data">{{ 'laboratories.detail.alerts.no_recent_alerts' | translate }}</p>
+    }
+  </div>
+</app-card>
